@@ -50,7 +50,7 @@ class DashboardController extends AbstractDashboardController
         ]);
 
         yield MenuItem::subMenu('物品领用', 'fa fa-tags')->setSubItems([
-            MenuItem::linkToCrud('出库单', '', Category::class),
+            MenuItem::linkToCrud('领用单', '', Category::class),
             MenuItem::linkToCrud('归还单', '', Category::class),
             MenuItem::linkToCrud('损耗单', '', Category::class),
             MenuItem::linkToCrud('使用中', '', Category::class),
