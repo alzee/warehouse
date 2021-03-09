@@ -15,6 +15,7 @@ use App\Entity\Take;
 use App\Entity\Back;
 use App\Entity\Loss;
 use App\Entity\Neo;
+use App\Entity\Zone;
 
 class DashboardController extends AbstractDashboardController
 {
@@ -42,6 +43,7 @@ class DashboardController extends AbstractDashboardController
         
         yield MenuItem::subMenu('仓库管理 ', 'fa fa-tags')->setSubItems([
             MenuItem::linkToRoute('仓库统计', '', 'warehouse_stat'),
+            MenuItem::linkToCrud('区域管理', '', Zone::class),
             MenuItem::linkToCrud('1号仓库', '', Category::class),
             MenuItem::linkToCrud('2号仓库', '', Category::class),
         ]);
