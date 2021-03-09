@@ -36,7 +36,7 @@ class DashboardController extends AbstractDashboardController
         // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
         
         yield MenuItem::subMenu('仓库管理 ', 'fa fa-tags')->setSubItems([
-            MenuItem::linkToCrud('仓库统计', '', Category::class),
+            MenuItem::linkToRoute('仓库统计', '', 'warehouse_stat'),
             MenuItem::linkToCrud('1号仓库', '', Category::class),
             MenuItem::linkToCrud('2号仓库', '', Category::class),
         ]);

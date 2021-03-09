@@ -1,0 +1,36 @@
+{% extends '@!EasyAdmin/page/content.html.twig' %}
+
+  {% block head_stylesheets %}
+      <link rel="stylesheet" href="{{ asset('bundles/easyadmin/app.css') }}">
+  {% endblock %}
+
+{% block content %}
+<div class="content">
+  <div class="d-flex my-5">
+    <div class="rounded bg-primary text-light w-25 h3 text-center p-4 py-5 mx-5">
+        <span>1号仓库</span>
+    </div>
+    <div class="h4">
+      <p>分区: 12个</p>
+      <p>物品类别: 12个</p>
+      <p>
+        库存: 12个
+      </p>
+    </div>
+  </div>
+  <div class="d-flex my-5">
+    <div class="rounded bg-primary text-light w-25 h3 text-center p-4 py-5 mx-5">
+        <span>2号仓库</span>
+    </div>
+    <div class="h4">
+      <p>分区: 12个</p>
+      <p>物品类别: 12个</p>
+      <p>
+        库存: 12个
+      </p>
+    </div>
+  </div>
+
+</div>
+
+{% endblock content %}
