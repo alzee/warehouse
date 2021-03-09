@@ -20,7 +20,7 @@ class Loss
     /**
      * @ORM\Column(type="integer")
      */
-    private $amount;
+    private $quantity;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -37,14 +37,14 @@ class Loss
         return $this->id;
     }
 
-    public function getAmount(): ?int
+    public function getQuantity(): ?int
     {
-        return $this->amount;
+        return $this->quantity;
     }
 
-    public function setAmount(int $amount): self
+    public function setQuantity(int $quantity): self
     {
-        $this->amount = $amount;
+        $this->quantity = $quantity;
 
         return $this;
     }
@@ -76,5 +76,11 @@ class Loss
     public function __toString(): string
     {
         return $this->name;
+    }
+
+    public function __construct()
+    {
+        $this->date = new \DateTimeImmutable();
+        $this->date = $this->date->setTimezone(new \DateTimeZone('Asia/Shanghai'));
     }
 }

@@ -78,4 +78,10 @@ class Take
 
         return $this;
     }
+
+    public function __construct()
+    {
+        $this->date = new \DateTimeImmutable();
+        $this->date = $this->date->setTimezone(new \DateTimeZone('Asia/Shanghai'));
+    }
 }

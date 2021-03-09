@@ -8,6 +8,9 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 
 class TakeCrudController extends AbstractCrudController
 {
@@ -24,5 +27,12 @@ class TakeCrudController extends AbstractCrudController
             IntegerField::new('quantity'),
             DateTimeField::new('date')->onlyOnIndex(),
         ];
+    }
+
+    public function configureActions(Actions $actions): Actions
+    {
+        return $actions
+            ->disable(Action::EDIT)
+        ;
     }
 }
