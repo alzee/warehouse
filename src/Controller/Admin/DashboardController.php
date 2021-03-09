@@ -12,6 +12,8 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use App\Entity\Category;
 use App\Entity\Item;
 use App\Entity\Take;
+use App\Entity\Back;
+use App\Entity\Loss;
 
 class DashboardController extends AbstractDashboardController
 {
