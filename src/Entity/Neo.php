@@ -18,12 +18,6 @@ class Neo
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Category::class)
-     * @ORM\JoinColumn(nullable=true)
-     */
-    private $category;
-
-    /**
      * @ORM\Column(type="datetime_immutable")
      */
     private $date;
@@ -48,18 +42,6 @@ class Neo
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getCategory(): ?Category
-    {
-        return $this->category;
-    }
-
-    public function setCategory(?Category $category): self
-    {
-        $this->category = $category;
-
-        return $this;
     }
 
     public function getDate(): ?\DateTimeImmutable

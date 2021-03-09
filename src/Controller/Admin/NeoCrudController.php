@@ -27,7 +27,6 @@ class NeoCrudController extends AbstractCrudController
         return [
             IdField::new('id')->onlyOnIndex(),
             AssociationField::new('item'),
-            AssociationField::new('category'),
             AssociationField::new('zone'),
             IntegerField::new('quantity'),
             DateTimeField::new('date')->onlyOnIndex(),
