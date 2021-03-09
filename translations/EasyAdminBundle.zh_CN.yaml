@@ -1,0 +1,7 @@
+filter.button.clear: 清除
+filter.button.apply: 确定
+filter.title: 过滤
+paginator.results: '%count%个记录'
+label.true: 是
+label.false: 否
+label.null: 
