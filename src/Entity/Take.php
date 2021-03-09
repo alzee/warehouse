@@ -28,6 +28,11 @@ class Take
      */
     private $item;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $quantity;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -60,5 +65,17 @@ class Take
     public function __toString(): string
     {
         return $this->id;
+    }
+
+    public function getQuantity(): ?int
+    {
+        return $this->quantity;
+    }
+
+    public function setQuantity(int $quantity): self
+    {
+        $this->quantity = $quantity;
+
+        return $this;
     }
 }
