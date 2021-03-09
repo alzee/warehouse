@@ -1,0 +1,26 @@
+{
+  "name": "warehouse",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {
+    "chart.js": "^2.9.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alzee/warehouse.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alzee/warehouse/issues"
+  },
+  "homepage": "https://github.com/alzee/warehouse#readme"
+}
