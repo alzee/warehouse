@@ -11,6 +11,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use App\Entity\Category;
 use App\Entity\Item;
+use App\Entity\Take;
 
 class DashboardController extends AbstractDashboardController
 {
@@ -50,7 +51,7 @@ class DashboardController extends AbstractDashboardController
         ]);
 
         yield MenuItem::subMenu('物品领用', 'fa fa-tags')->setSubItems([
-            MenuItem::linkToCrud('领用单', '', Category::class),
+            MenuItem::linkToCrud('领用单', '', Take::class)->setAction('new'),
             MenuItem::linkToCrud('归还单', '', Category::class),
             MenuItem::linkToCrud('损耗单', '', Category::class),
             MenuItem::linkToCrud('使用中', '', Category::class),
@@ -58,7 +59,7 @@ class DashboardController extends AbstractDashboardController
 
         yield MenuItem::subMenu('仓库日志', 'fa fa-tags')->setSubItems([
             MenuItem::linkToCrud('入库', '', Category::class),
-            MenuItem::linkToCrud('领用', '', Category::class),
+            MenuItem::linkToCrud('领用', '', Take::class),
             MenuItem::linkToCrud('归还', '', Category::class),
             MenuItem::linkToCrud('损耗', '', Category::class),
         ]);
