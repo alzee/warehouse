@@ -24,7 +24,8 @@ class LossCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id')->onlyOnIndex(),
-            //AssociationField::new('item'),
+            AssociationField::new('item'),
+            AssociationField::new('take'),
             IntegerField::new('quantity'),
             TextField::new('why'),
             DateTimeField::new('date')->onlyOnIndex(),

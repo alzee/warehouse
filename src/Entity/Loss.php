@@ -32,6 +32,16 @@ class Loss
      */
     private $date;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Item::class)
+     */
+    private $item;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Take::class)
+     */
+    private $take;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -82,5 +92,29 @@ class Loss
     {
         $this->date = new \DateTimeImmutable();
         $this->date = $this->date->setTimezone(new \DateTimeZone('Asia/Shanghai'));
+    }
+
+    public function getItem(): ?Item
+    {
+        return $this->item;
+    }
+
+    public function setItem(?Item $item): self
+    {
+        $this->item = $item;
+
+        return $this;
+    }
+
+    public function getTake(): ?Take
+    {
+        return $this->take;
+    }
+
+    public function setTake(?Take $take): self
+    {
+        $this->take = $take;
+
+        return $this;
     }
 }
