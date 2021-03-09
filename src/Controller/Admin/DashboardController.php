@@ -14,6 +14,7 @@ use App\Entity\Item;
 use App\Entity\Take;
 use App\Entity\Back;
 use App\Entity\Loss;
+use App\Entity\Neo;
 
 class DashboardController extends AbstractDashboardController
 {
@@ -49,7 +50,7 @@ class DashboardController extends AbstractDashboardController
             MenuItem::linkToRoute('物品分布', '', 'item_dist'),
             MenuItem::linkToCrud('物品类别', '', Category::class),
             MenuItem::linkToCrud('物品列表', '', Item::class),
-            MenuItem::linkToCrud('物品入库', '', Item::class)->setAction('new'),
+            MenuItem::linkToCrud('物品入库', '', Neo::class)->setAction('new'),
         ]);
 
         yield MenuItem::subMenu('物品领用', 'fa fa-tags')->setSubItems([
@@ -60,7 +61,7 @@ class DashboardController extends AbstractDashboardController
         ]);
 
         yield MenuItem::subMenu('仓库日志', 'fa fa-tags')->setSubItems([
-            MenuItem::linkToCrud('入库', '', Item::class),
+            MenuItem::linkToCrud('入库', '', Neo::class),
             MenuItem::linkToCrud('领用', '', Take::class),
             MenuItem::linkToCrud('归还', '', Back::class),
             MenuItem::linkToCrud('损耗', '', Loss::class),
