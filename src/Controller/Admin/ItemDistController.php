@@ -6,14 +6,14 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class WarehouseStatController extends AbstractDashboardController
+class ItemDistController extends AbstractDashboardController
 {
     /**
-     * @Route("/warehousestat", name="warehouse_stat")
+     * @Route("/itemdist", name="item_dist")
      */
     public function index(): Response
     {
         //return parent::index();
-        return $this->render('warehouse_stat.html.twig');
+        return $this->render('item_dist.html.twig');
     }
 }

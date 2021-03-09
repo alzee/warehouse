@@ -42,7 +42,7 @@ class DashboardController extends AbstractDashboardController
         ]);
 
         yield MenuItem::subMenu('物品管理 ', 'fa fa-tags')->setSubItems([
-            MenuItem::linkToCrud('物品分布', '', Category::class),
+            MenuItem::linkToRoute('物品分布', '', 'item_dist'),
             MenuItem::linkToCrud('物品类别', '', Category::class),
             MenuItem::linkToCrud('物品列表', '', Category::class),
             MenuItem::linkToCrud('物品入库', '', Category::class),
