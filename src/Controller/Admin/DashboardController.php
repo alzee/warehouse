@@ -36,19 +36,23 @@ class DashboardController extends AbstractDashboardController
         // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
         
         yield MenuItem::subMenu('仓库管理 ', 'fa fa-tags')->setSubItems([
+            MenuItem::linkToCrud('仓库统计', '', Category::class),
             MenuItem::linkToCrud('1号仓库', '', Category::class),
             MenuItem::linkToCrud('2号仓库', '', Category::class),
         ]);
 
         yield MenuItem::subMenu('物品管理 ', 'fa fa-tags')->setSubItems([
-            MenuItem::linkToCrud('物品分类', '', Category::class),
+            MenuItem::linkToCrud('物品分布', '', Category::class),
+            MenuItem::linkToCrud('物品类别', '', Category::class),
             MenuItem::linkToCrud('物品列表', '', Category::class),
+            MenuItem::linkToCrud('物品入库', '', Category::class),
         ]);
 
         yield MenuItem::subMenu('物品领用', 'fa fa-tags')->setSubItems([
-            MenuItem::linkToCrud('新建出库单', '', Category::class),
-            MenuItem::linkToCrud('物品使用中', '', Category::class),
-            MenuItem::linkToCrud('物品归还', '', Category::class),
+            MenuItem::linkToCrud('出库单', '', Category::class),
+            MenuItem::linkToCrud('归还单', '', Category::class),
+            MenuItem::linkToCrud('损耗单', '', Category::class),
+            MenuItem::linkToCrud('使用中', '', Category::class),
         ]);
 
         yield MenuItem::subMenu('仓库日志', 'fa fa-tags')->setSubItems([
