@@ -5,3 +5,6 @@ paginator.results: '%count%个记录'
 label.true: 是
 label.false: 否
 label.null: 
+action.create: 提交
+action.create_and_add_another: 提交并继续新增
+

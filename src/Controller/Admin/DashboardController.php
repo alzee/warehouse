@@ -10,6 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use App\Entity\Category;
+use App\Entity\Item;
 
 class DashboardController extends AbstractDashboardController
 {
@@ -44,8 +45,8 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::subMenu('物品管理 ', 'fa fa-tags')->setSubItems([
             MenuItem::linkToRoute('物品分布', '', 'item_dist'),
             MenuItem::linkToCrud('物品类别', '', Category::class),
-            MenuItem::linkToCrud('物品列表', '', Category::class),
-            MenuItem::linkToCrud('物品入库', '', Category::class),
+            MenuItem::linkToCrud('物品列表', '', Item::class),
+            MenuItem::linkToCrud('物品入库', '', Item::class)->setAction('new'),
         ]);
 
         yield MenuItem::subMenu('物品领用', 'fa fa-tags')->setSubItems([
