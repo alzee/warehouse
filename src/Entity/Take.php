@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\BorrowRepository;
+use App\Repository\TakeRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=BorrowRepository::class)
+ * @ORM\Entity(repositoryClass=TakeRepository::class)
  */
-class Borrow
+class Take
 {
     /**
      * @ORM\Id
