@@ -33,6 +33,11 @@ class Take
      */
     private $quantity;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $returned = false;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -83,5 +88,17 @@ class Take
     {
         $this->date = new \DateTimeImmutable();
         $this->date = $this->date->setTimezone(new \DateTimeZone('Asia/Shanghai'));
+    }
+
+    public function getReturned(): ?bool
+    {
+        return $this->returned;
+    }
+
+    public function setReturned(bool $returned): self
+    {
+        $this->returned = $returned;
+
+        return $this;
     }
 }
