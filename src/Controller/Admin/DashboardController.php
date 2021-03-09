@@ -8,6 +8,8 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use App\Entity\Category;
 use App\Entity\Item;
@@ -78,6 +80,20 @@ class DashboardController extends AbstractDashboardController
             // this defines the pagination size for all CRUD controllers
             // (each CRUD controller can override this value if needed)
             ->setPaginatorPageSize(30)
+        ;
+    }
+
+    public function configureActions(): Actions
+    {
+        return Actions::new()
+            ->add(Crud::PAGE_INDEX, Action::NEW)
+            ->add(Crud::PAGE_INDEX, Action::EDIT)
+            ->add(Crud::PAGE_INDEX, Action::DELETE)
+            ->add(Crud::PAGE_DETAIL, Action::EDIT)
+            ->add(Crud::PAGE_DETAIL, Action::INDEX)
+            ->add(Crud::PAGE_DETAIL, Action::DELETE)
+            ->add(Crud::PAGE_EDIT, Action::SAVE_AND_RETURN)
+            ->add(Crud::PAGE_NEW, Action::SAVE_AND_RETURN)
         ;
     }
 }
