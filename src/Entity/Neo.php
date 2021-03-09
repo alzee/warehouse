@@ -19,7 +19,7 @@ class Neo
 
     /**
      * @ORM\ManyToOne(targetEntity=Category::class)
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $category;
 
@@ -113,5 +113,11 @@ class Neo
     public function __toString(): string
     {
         return $this->item;
+    }
+
+    public function __construct()
+    {
+        $this->date = new \DateTimeImmutable();
+        $this->date = $this->date->setTimezone(new \DateTimeZone('Asia/Shanghai'));
     }
 }
