@@ -109,4 +109,9 @@ class Neo
 
         return $this;
     }
+
+    public function __toString(): string
+    {
+        return $this->item;
+    }
 }
