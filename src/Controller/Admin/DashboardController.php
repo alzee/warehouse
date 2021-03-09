@@ -8,6 +8,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use App\Entity\Category;
 
 class DashboardController extends AbstractDashboardController
@@ -17,7 +18,8 @@ class DashboardController extends AbstractDashboardController
      */
     public function index(): Response
     {
-        return parent::index();
+        //return parent::index();
+        return $this->render('dashboard.html.twig');
     }
 
     public function configureDashboard(): Dashboard
@@ -49,5 +51,14 @@ class DashboardController extends AbstractDashboardController
 
         yield MenuItem::section('Section Z');
         //yield MenuItem::linkToLogout('Logout', 'fa fa-exit');
+    }
+
+    public function configureCrud(): Crud
+    {
+        return Crud::new()
+            // this defines the pagination size for all CRUD controllers
+            // (each CRUD controller can override this value if needed)
+            ->setPaginatorPageSize(30)
+        ;
     }
 }
