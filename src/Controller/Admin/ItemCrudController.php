@@ -4,6 +4,8 @@ namespace App\Controller\Admin;
 
 use App\Entity\Item;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 
 class ItemCrudController extends AbstractCrudController
 {
@@ -12,14 +14,11 @@ class ItemCrudController extends AbstractCrudController
         return Item::class;
     }
 
-    /*
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id'),
-            TextField::new('title'),
-            TextEditorField::new('description'),
+            TextField::new('name'),
+            AssociationField::new('category'),
         ];
     }
-    */
 }

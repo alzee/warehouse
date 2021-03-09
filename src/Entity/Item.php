@@ -31,11 +31,11 @@ class Item
     /**
      * @ORM\Column(type="integer")
      */
-    private $stock;
+    private $stock = 0;
 
     /**
      * @ORM\ManyToOne(targetEntity=Zone::class)
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $zone;
 
