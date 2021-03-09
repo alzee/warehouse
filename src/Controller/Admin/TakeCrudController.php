@@ -4,6 +4,10 @@ namespace App\Controller\Admin;
 
 use App\Entity\Take;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 
 class TakeCrudController extends AbstractCrudController
 {
@@ -12,14 +16,13 @@ class TakeCrudController extends AbstractCrudController
         return Take::class;
     }
 
-    /*
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id'),
-            TextField::new('title'),
-            TextEditorField::new('description'),
+            IdField::new('id')->onlyOnIndex(),
+            AssociationField::new('item'),
+            IntegerField::new('quantity'),
+            DateTimeField::new('date')->onlyOnIndex(),
         ];
     }
-    */
 }

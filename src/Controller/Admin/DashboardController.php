@@ -65,10 +65,10 @@ class DashboardController extends AbstractDashboardController
         ]);
 
         yield MenuItem::subMenu('仓库日志', 'fa fa-tags')->setSubItems([
-            MenuItem::linkToCrud('入库', '', Neo::class),
-            MenuItem::linkToCrud('领用', '', Take::class),
-            MenuItem::linkToCrud('归还', '', Back::class),
-            MenuItem::linkToCrud('损耗', '', Loss::class),
+            MenuItem::linkToCrud('入库记录', '', Neo::class),
+            MenuItem::linkToCrud('领用记录', '', Take::class),
+            MenuItem::linkToCrud('归还记录', '', Back::class),
+            MenuItem::linkToCrud('损耗记录', '', Loss::class),
         ]);
 
         //yield MenuItem::linkToLogout('Logout', 'fa fa-exit');

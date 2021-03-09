@@ -25,7 +25,7 @@ class NeoCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            IntegerField::new('id')->onlyOnIndex(),
+            IdField::new('id')->onlyOnIndex(),
             AssociationField::new('item'),
             AssociationField::new('category'),
             AssociationField::new('zone'),
