@@ -23,7 +23,7 @@ class BackCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id')->onlyOnIndex(),
-            //AssociationField::new('item'),
+            AssociationField::new('take'),
             IntegerField::new('quantity'),
             DateTimeField::new('date')->onlyOnIndex(),
         ];

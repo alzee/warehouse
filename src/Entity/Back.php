@@ -27,6 +27,12 @@ class Back
      */
     private $quantity;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Take::class)
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $take;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -65,5 +71,17 @@ class Back
     {
         $this->date = new \DateTimeImmutable();
         $this->date = $this->date->setTimezone(new \DateTimeZone('Asia/Shanghai'));
+    }
+
+    public function getTake(): ?Take
+    {
+        return $this->take;
+    }
+
+    public function setTake(?Take $take): self
+    {
+        $this->take = $take;
+
+        return $this;
     }
 }
