@@ -43,16 +43,20 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linktoDashboard('数据统计', 'fa fa-home');
         // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
         
+        /*
         yield MenuItem::subMenu('仓库管理 ', 'fa fa-tags')->setSubItems([
             MenuItem::linkToRoute('仓库统计', '', 'warehouse_stat'),
-            MenuItem::linkToCrud('区域管理', '', Zone::class),
             MenuItem::linkToCrud('1号仓库', '', Category::class),
             MenuItem::linkToCrud('2号仓库', '', Category::class),
         ]);
+         */
+
+        yield MenuItem::linkToCrud('区域管理', 'fa fa-tags', Zone::class);
 
         yield MenuItem::subMenu('物品管理 ', 'fa fa-tags')->setSubItems([
-            MenuItem::linkToRoute('物品分布', '', 'item_dist'),
+            //MenuItem::linkToRoute('物品分布', '', 'item_dist'),
             MenuItem::linkToCrud('物品类别', '', Category::class),
+            MenuItem::linkToCrud('新增物品', '', Item::class)->setAction('new'),
             MenuItem::linkToCrud('物品列表', '', Item::class),
             MenuItem::linkToCrud('物品入库', '', Neo::class)->setAction('new'),
         ]);
