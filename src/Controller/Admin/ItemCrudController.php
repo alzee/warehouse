@@ -8,6 +8,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 
 class ItemCrudController extends AbstractCrudController
 {
@@ -24,5 +25,12 @@ class ItemCrudController extends AbstractCrudController
             AssociationField::new('category'),
             IntegerField::new('stock')->onlyOnIndex(),
         ];
+    }
+
+    public function configureFilters(Filters $filters): Filters
+    {
+        return $filters
+            ->add('category')
+        ;
     }
 }

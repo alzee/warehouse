@@ -1,0 +1,20 @@
+td.field-image.avatar a img{
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+.datalist .field-image.avatar a img{
+  width: 140px;
+  border-radius: .5em;
+}
+.ellipsis{
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 150px;
+  overflow: hidden;
+  display: inline-block;
+}
+.form-widget-compound .form-group:first-child{
+    display: none;
+}
+
