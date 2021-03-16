@@ -1,4 +1,5 @@
 major:
+  - charts
   - adding stock
 
 # vim:ft=yaml
