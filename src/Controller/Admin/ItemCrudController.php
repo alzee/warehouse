@@ -26,6 +26,7 @@ class ItemCrudController extends AbstractCrudController
             IdField::new('id')->onlyOnIndex(),
             TextField::new('name'),
             IntegerField::new('stock')->onlyOnIndex(),
+            //AssociationField::new('entries'),
         ];
     }
 
