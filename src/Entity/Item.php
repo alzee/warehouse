@@ -25,12 +25,6 @@ class Item
     private $name;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Category::class)
-     * @ORM\JoinColumn(nullable=true)
-     */
-    private $category;
-
-    /**
      * @ORM\Column(type="integer")
      */
     private $stock = 0;
@@ -70,18 +64,6 @@ class Item
     public function setName(string $name): self
     {
         $this->name = $name;
-
-        return $this;
-    }
-
-    public function getCategory(): ?Category
-    {
-        return $this->category;
-    }
-
-    public function setCategory(?Category $category): self
-    {
-        $this->category = $category;
 
         return $this;
     }
