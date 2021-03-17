@@ -14,6 +14,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use App\Entity\Category;
 use App\Entity\Item;
 use App\Entity\Box;
+use App\Entity\Log;
 use App\Entity\Entry;
 use App\Entity\Take;
 use App\Entity\Back;
@@ -69,13 +70,13 @@ class DashboardController extends AbstractDashboardController
             MenuItem::linkToCrud('领用单', '', Take::class)->setAction('new'),
             MenuItem::linkToCrud('归还单', '', Back::class)->setAction('new'),
             MenuItem::linkToCrud('损耗单', '', Loss::class)->setAction('new'),
-            MenuItem::linkToCrud('使用中', '', Category::class),
+            // MenuItem::linkToCrud('使用中', '', Category::class),
         ]);
 
         yield MenuItem::subMenu('仓库日志', 'fa fa-tags')->setSubItems([
-            MenuItem::linkToCrud('入库记录', '', Neo::class),
-            MenuItem::linkToCrud('领用记录', '', Take::class),
-            MenuItem::linkToCrud('归还记录', '', Back::class),
+            MenuItem::linkToCrud('进出记录', '', Log::class),
+            //MenuItem::linkToCrud('领用记录', '', Take::class),
+            // MenuItem::linkToCrud('归还记录', '', Back::class),
             MenuItem::linkToCrud('损耗记录', '', Loss::class),
         ]);
 

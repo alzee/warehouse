@@ -11,6 +11,8 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
+use EasyCorp\Bundle\EasyAdminBundle\Filter\BooleanFilter;
 
 class BoxCrudController extends AbstractCrudController
 {
@@ -50,5 +52,12 @@ class BoxCrudController extends AbstractCrudController
             //->setPageTitle('index', '%entity_label_plural% list');
             ->setPageTitle('detail', fn (Box $box) => (string) $box . '号箱子');
             ;
+    }
+
+    public function configureFilters(Filters $filters): Filters
+    {
+        return $filters
+            ->add(BooleanFilter::new('status'))
+        ;
     }
 }
