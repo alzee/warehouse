@@ -35,7 +35,7 @@ class DashboardController extends AbstractDashboardController
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('仓库管理系统')
+            ->setTitle('战备器材库信息化管理系统')
             ->setTranslationDomain('admin')
         ;
     }
@@ -58,7 +58,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::subMenu('物品管理 ', 'fa fa-tags')->setSubItems([
             //MenuItem::linkToRoute('物品分布', '', 'item_dist'),
             //MenuItem::linkToCrud('物品类别', '', Category::class),
-            MenuItem::linkToCrud('新增物品', '', Item::class)->setAction('new'),
+            MenuItem::linkToCrud('新增品名', '', Item::class)->setAction('new'),
             MenuItem::linkToCrud('物品列表', '', Item::class),
             MenuItem::linkToCrud('箱子列表', '', Box::class),
             MenuItem::linkToCrud('条目列表', '', Entry::class),
