@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ItemRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -38,6 +40,16 @@ class Item
      * @ORM\JoinColumn(nullable=true)
      */
     private $zone;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Box::class, mappedBy="items")
+     */
+    private $boxes;
+
+    public function __construct()
+    {
+        $this->boxes = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -95,5 +107,32 @@ class Item
     public function __toString(): string
     {
         return $this->name;
+    }
+
+    /**
+     * @return Collection|Box[]
+     */
+    public function getBoxes(): Collection
+    {
+        return $this->boxes;
+    }
+
+    public function addBox(Box $box): self
+    {
+        if (!$this->boxes->contains($box)) {
+            $this->boxes[] = $box;
+            $box->addItem($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBox(Box $box): self
+    {
+        if ($this->boxes->removeElement($box)) {
+            $box->removeItem($this);
+        }
+
+        return $this;
     }
 }
