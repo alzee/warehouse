@@ -22,15 +22,7 @@ class ItemCrudController extends AbstractCrudController
         return [
             IdField::new('id')->onlyOnIndex(),
             TextField::new('name'),
-            AssociationField::new('category'),
             IntegerField::new('stock')->onlyOnIndex(),
         ];
-    }
-
-    public function configureFilters(Filters $filters): Filters
-    {
-        return $filters
-            ->add('category')
-        ;
     }
 }
