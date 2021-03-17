@@ -22,6 +22,11 @@ class Log
      */
     private $date;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $box;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -35,6 +40,18 @@ class Log
     public function setDate(\DateTimeImmutable $date): self
     {
         $this->date = $date;
+
+        return $this;
+    }
+
+    public function getBox(): ?int
+    {
+        return $this->box;
+    }
+
+    public function setBox(int $box): self
+    {
+        $this->box = $box;
 
         return $this;
     }

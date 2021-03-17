@@ -34,6 +34,11 @@ class Box
      */
     private $entries;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $status;
+
     public function __construct()
     {
         $this->items = new ArrayCollection();
@@ -114,6 +119,18 @@ class Box
     public function __toString(): string
     {
         return $this->id;
+    }
+
+    public function getStatus(): ?bool
+    {
+        return $this->status;
+    }
+
+    public function setStatus(bool $status): self
+    {
+        $this->status = $status;
+
+        return $this;
     }
 
 }
