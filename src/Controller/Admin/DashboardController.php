@@ -61,7 +61,7 @@ class DashboardController extends AbstractDashboardController
             MenuItem::linkToCrud('新增品名', '', Item::class)->setAction('new'),
             MenuItem::linkToCrud('物品列表', '', Item::class),
             MenuItem::linkToCrud('箱子列表', '', Box::class),
-            MenuItem::linkToCrud('条目列表', '', Entry::class),
+            MenuItem::linkToCrud('箱子物品', '', Entry::class),
             //MenuItem::linkToCrud('物品入库', '', Neo::class)->setAction('new'),
         ]);
 
