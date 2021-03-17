@@ -7,5 +7,5 @@ label.null:
 action.create: 提交
 action.create_and_add_another: 提交并继续新增
 action.save: 保存
-filter.title: 条件查询
+filter.title: 筛选
 
