@@ -9,6 +9,9 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 
 class ItemCrudController extends AbstractCrudController
 {
@@ -24,5 +27,13 @@ class ItemCrudController extends AbstractCrudController
             TextField::new('name'),
             IntegerField::new('stock')->onlyOnIndex(),
         ];
+    }
+
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            //->setPageTitle('index', '%entity_label_plural% list');
+            ->setPageTitle('new', '新增品名');
+            ;
     }
 }
