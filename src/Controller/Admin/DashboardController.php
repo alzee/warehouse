@@ -13,6 +13,8 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use App\Entity\Category;
 use App\Entity\Item;
+use App\Entity\Box;
+use App\Entity\Entry;
 use App\Entity\Take;
 use App\Entity\Back;
 use App\Entity\Loss;
@@ -51,14 +53,16 @@ class DashboardController extends AbstractDashboardController
         ]);
          */
 
-        yield MenuItem::linkToCrud('区域管理', 'fa fa-tags', Zone::class);
+        //yield MenuItem::linkToCrud('区域管理', 'fa fa-tags', Zone::class);
 
         yield MenuItem::subMenu('物品管理 ', 'fa fa-tags')->setSubItems([
             //MenuItem::linkToRoute('物品分布', '', 'item_dist'),
-            MenuItem::linkToCrud('物品类别', '', Category::class),
+            //MenuItem::linkToCrud('物品类别', '', Category::class),
             MenuItem::linkToCrud('新增物品', '', Item::class)->setAction('new'),
             MenuItem::linkToCrud('物品列表', '', Item::class),
-            MenuItem::linkToCrud('物品入库', '', Neo::class)->setAction('new'),
+            MenuItem::linkToCrud('箱子列表', '', Box::class),
+            MenuItem::linkToCrud('条目列表', '', Entry::class),
+            //MenuItem::linkToCrud('物品入库', '', Neo::class)->setAction('new'),
         ]);
 
         yield MenuItem::subMenu('物品领用', 'fa fa-tags')->setSubItems([
