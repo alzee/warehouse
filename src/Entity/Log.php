@@ -23,7 +23,7 @@ class Log
     private $date;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string", length=255)
      */
     private $box;
 
@@ -44,12 +44,12 @@ class Log
         return $this;
     }
 
-    public function getBox(): ?int
+    public function getBox(): ?string
     {
         return $this->box;
     }
 
-    public function setBox(int $box): self
+    public function setBox(string $box): self
     {
         $this->box = $box;
 
