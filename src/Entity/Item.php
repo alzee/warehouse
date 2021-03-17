@@ -153,4 +153,16 @@ class Item
 
         return $this;
     }
+
+    public function addStock(int $n)
+    {
+        $s = $this->getStock() + $n;
+        $this->setStock($s);
+    }
+
+    public function minusStock(int $n)
+    {
+        $s = $this->getStock() - $n;
+        $this->setStock($s);
+    }
 }
