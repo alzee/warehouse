@@ -46,9 +46,15 @@ class Item
      */
     private $boxes;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Entry::class, mappedBy="item")
+     */
+    private $entries;
+
     public function __construct()
     {
         $this->boxes = new ArrayCollection();
+        $this->entries = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -131,6 +137,36 @@ class Item
     {
         if ($this->boxes->removeElement($box)) {
             $box->removeItem($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Entry[]
+     */
+    public function getEntries(): Collection
+    {
+        return $this->entries;
+    }
+
+    public function addEntry(Entry $entry): self
+    {
+        if (!$this->entries->contains($entry)) {
+            $this->entries[] = $entry;
+            $entry->setItem($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEntry(Entry $entry): self
+    {
+        if ($this->entries->removeElement($entry)) {
+            // set the owning side to null (unless already changed)
+            if ($entry->getItem() === $this) {
+                $entry->setItem(null);
+            }
         }
 
         return $this;
