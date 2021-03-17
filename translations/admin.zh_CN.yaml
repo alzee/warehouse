@@ -14,3 +14,5 @@ Zone: 区域
 Warehouse: 仓库
 Returned: 已归还
 ID: 编号
+Box: 箱子
+entries: 箱子物品
