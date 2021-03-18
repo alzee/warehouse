@@ -27,6 +27,11 @@ class Log
      */
     private $box;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $direction;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -52,6 +57,18 @@ class Log
     public function setBox(string $box): self
     {
         $this->box = $box;
+
+        return $this;
+    }
+
+    public function getDirection(): ?bool
+    {
+        return $this->direction;
+    }
+
+    public function setDirection(?bool $direction): self
+    {
+        $this->direction = $direction;
 
         return $this;
     }
