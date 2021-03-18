@@ -46,13 +46,18 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linktoDashboard('数据统计', 'fa fa-home');
         // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
         
+        yield  MenuItem::linkToCrud('新增品名', 'fa fa-tag', Item::class)->setAction('new');
+        yield  MenuItem::linkToCrud('物品列表', 'fa fa-tag', Item::class);
+        yield  MenuItem::linkToCrud('箱子列表', 'fa fa-tag', Box::class);
+        yield  MenuItem::linkToCrud('箱子物品', 'fa fa-tag', Entry::class);
+        yield MenuItem::linkToCrud('进出记录', 'fa fa-tag', Log::class);
+
         /*
         yield MenuItem::subMenu('仓库管理 ', 'fa fa-tags')->setSubItems([
             MenuItem::linkToRoute('仓库统计', '', 'warehouse_stat'),
             MenuItem::linkToCrud('1号仓库', '', Category::class),
             MenuItem::linkToCrud('2号仓库', '', Category::class),
         ]);
-         */
 
         //yield MenuItem::linkToCrud('区域管理', 'fa fa-tags', Zone::class);
 
@@ -81,6 +86,7 @@ class DashboardController extends AbstractDashboardController
         ]);
 
         //yield MenuItem::linkToLogout('Logout', 'fa fa-exit');
+         */
     }
 
     public function configureCrud(): Crud
