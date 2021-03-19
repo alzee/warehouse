@@ -50,7 +50,8 @@ class BoxCrudController extends AbstractCrudController
     {
         return $crud
             //->setPageTitle('index', '%entity_label_plural% list');
-            ->setPageTitle('detail', fn (Box $box) => (string) $box . '号箱子');
+            ->setPageTitle('detail', fn (Box $box) => (string) $box . '号箱子')
+            ->overrideTemplate('crud/field/boolean', 'field_direction_box.html.twig')
             ;
     }
 

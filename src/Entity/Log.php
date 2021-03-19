@@ -32,6 +32,11 @@ class Log
      */
     private $direction;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $note;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -69,6 +74,18 @@ class Log
     public function setDirection(?bool $direction): self
     {
         $this->direction = $direction;
+
+        return $this;
+    }
+
+    public function getNote(): ?string
+    {
+        return $this->note;
+    }
+
+    public function setNote(?string $note): self
+    {
+        $this->note = $note;
 
         return $this;
     }

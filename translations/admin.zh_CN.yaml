@@ -17,7 +17,8 @@ ID: 编号
 Box: 箱子
 entries: 箱子物品
 Entry: 箱子物品
-isHome: 在库
+isHome: 在库状态
 Log: 进出记录
 Status: 在库
 Direction: 进出
+Note: 备注

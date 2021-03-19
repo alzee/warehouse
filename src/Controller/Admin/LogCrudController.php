@@ -21,15 +21,23 @@ class LogCrudController extends AbstractCrudController
     public function configureActions(Actions $actions): Actions
     {
         return $actions
-            ->disable(Action::NEW, Action::DELETE, Action::EDIT);
+            ->disable(Action::NEW, Action::DELETE);
     }
 
     public function configureFields(string $pageName): iterable
     {
         return [
-            TextField::new('box'),
-            BooleanField::new('direction')->renderAsSwitch(0),
-            DateTimeField::new('date')->setFormat('y年MM月dd日 HH:mm:ss'),
+            TextField::new('box')->hideOnForm(),
+            BooleanField::new('direction')->renderAsSwitch(0)->hideOnForm(),
+            DateTimeField::new('date')->setFormat('y年MM月dd日 HH:mm:ss')->hideOnForm(),
+            TextField::new('note'),
         ];
+    }
+
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            ->overrideTemplate('crud/field/boolean', 'field_direction.html.twig')
+        ;
     }
 }
