@@ -29,7 +29,7 @@ class LogCrudController extends AbstractCrudController
         return [
             TextField::new('box'),
             BooleanField::new('direction')->renderAsSwitch(0),
-            DateTimeField::new('date')->setFormat('y年M月d日 H:m:s'),
+            DateTimeField::new('date')->setFormat('y年MM月dd日 HH:mm:ss'),
         ];
     }
 }
