@@ -45,6 +45,11 @@ class Item
      */
     private $entries;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $stock0;
+
     public function __construct()
     {
         $this->boxes = new ArrayCollection();
@@ -164,5 +169,17 @@ class Item
     {
         $s = $this->getStock() - $n;
         $this->setStock($s);
+    }
+
+    public function getStock0(): ?int
+    {
+        return $this->stock0;
+    }
+
+    public function setStock0(?int $stock0): self
+    {
+        $this->stock0 = $stock0;
+
+        return $this;
     }
 }

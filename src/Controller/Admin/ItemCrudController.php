@@ -44,6 +44,7 @@ class ItemCrudController extends AbstractCrudController
             IdField::new('id')->onlyOnIndex(),
             TextField::new('name'),
             IntegerField::new('stock')->onlyOnIndex(),
+            IntegerField::new('stock0')->onlyOnIndex(),
             //AssociationField::new('entries'),
         ];
     }
@@ -88,8 +89,10 @@ class ItemCrudController extends AbstractCrudController
             $entries = $this->getDoctrine()->getRepository(Entry::class)->findBy(['item'=> $itemId]);
             // dump($entries);
             $stock = 0;
+            $stock0 = 0;
             foreach($entries as $entry){
                //dump($entry);
+               $stock0 += $entry->getQuantity();
                if($entry->getBox()->getStatus()){
                    $stock += $entry->getQuantity();
                }
@@ -98,6 +101,7 @@ class ItemCrudController extends AbstractCrudController
                //}
             }
             // dump($quan);
+            $v->getInstance()->setStock0($stock0);
             $v->getInstance()->setStock($stock);
         };
 
