@@ -43,6 +43,7 @@ class ItemCrudController extends AbstractCrudController
         return [
             IdField::new('id')->onlyOnIndex(),
             TextField::new('name'),
+            TextField::new('unit'),
             IntegerField::new('stock')->onlyOnIndex(),
             IntegerField::new('stock0')->onlyOnIndex(),
             //AssociationField::new('entries'),

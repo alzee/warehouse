@@ -78,4 +78,11 @@ class Entry
         return $this->id;
     }
 
+    //public function getUnit(): string
+    //{
+    //    return '个';
+    //    // return $this->quantity;
+    //}
+
+
 }

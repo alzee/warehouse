@@ -77,7 +77,6 @@ class DashboardController extends AbstractDashboardController
             }
             //$log->setItems($items);
             $log->items= $items;
-            dump($log);
         }
 
         $data = [

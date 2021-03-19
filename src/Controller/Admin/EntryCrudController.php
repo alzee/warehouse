@@ -27,6 +27,7 @@ class EntryCrudController extends AbstractCrudController
             AssociationField::new('box'),
             AssociationField::new('item'),
             IntegerField::new('quantity'),
+            TextField::new('unit'),
         ];
     }
 

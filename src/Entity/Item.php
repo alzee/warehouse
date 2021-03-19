@@ -50,6 +50,11 @@ class Item
      */
     private $stock0;
 
+    /**
+     * @ORM\Column(type="string", length=10, nullable=true)
+     */
+    private $unit;
+
     public function __construct()
     {
         $this->boxes = new ArrayCollection();
@@ -179,6 +184,18 @@ class Item
     public function setStock0(?int $stock0): self
     {
         $this->stock0 = $stock0;
+
+        return $this;
+    }
+
+    public function getUnit(): ?string
+    {
+        return $this->unit;
+    }
+
+    public function setUnit(?string $unit): self
+    {
+        $this->unit = $unit;
 
         return $this;
     }
