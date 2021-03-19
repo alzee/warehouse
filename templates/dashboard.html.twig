@@ -51,7 +51,7 @@
         <tbody>
         {% for i in logs %}
           <tr>
-            <td colspan="1">{{i.date|date("Y/m/d H:i:s")}}</td>
+            <td>{{i.date|date("Y/m/d H:i:s")}}</td>
             <td>{{i.box}}</td>
             {% if i.direction %}
             <td>进</td>
