@@ -45,33 +45,45 @@ class DashboardController extends AbstractDashboardController
         $using = $stock0 - $stock;
 
         $months = [];
-        for($i = 0; $i < 6; $i++){
+        for($i = 5; $i >= 0; $i--){
             array_push($months, date("Y/m", strtotime("-$i month")));
         }
         $months = (array_flip($months));
-        dump($months);
+        foreach($months as $k => $v){
+            $months[$k] = 0;
+        }
 
         foreach($logs as $log){
             $mon = $log->getDate()->format("Y/m");
-            if($months[$mon]){
-                // $months[$mon] += $log;
-            }
             $boxId = $log->getBox();
             $items = '';
+
             foreach($entries as $entry){
+
                 if($boxId == $entry->getBox()->getId()){
                     $item = $entry->getItem()->getName();
                     $quan = $entry->getQuantity();
                     $items .= $item . 'x' . $quan . '  ';
+                    // only 出库
+                    if(!$log->getDirection()){
+                        $months[$mon] += $entry->getQuantity();
+                    }
                 }
+                //foreach($months as $k => $v){
+                //    if($k == $mon){
+                //        $months[$k] += $entry->getQuantity();
+                //    }
+                //}
             }
             $log->setItems($items);
         }
+
         $data = [
             'stock0' => $stock0,
             'stock' => $stock,
             'using' => $using,
             'logs' => $logs,
+            'months' => $months
         ];
 
         //return parent::index();
