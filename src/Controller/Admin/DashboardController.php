@@ -44,9 +44,19 @@ class DashboardController extends AbstractDashboardController
         }
         $using = $stock0 - $stock;
 
+        $months = [];
+        for($i = 0; $i < 6; $i++){
+            array_push($months, date("Y/m", strtotime("-$i month")));
+        }
+        $months = (array_flip($months));
+        dump($months);
+
         foreach($logs as $log){
+            $mon = $log->getDate()->format("Y/m");
+            if($months[$mon]){
+                // $months[$mon] += $log;
+            }
             $boxId = $log->getBox();
-            dump($log);
             $items = '';
             foreach($entries as $entry){
                 if($boxId == $entry->getBox()->getId()){
@@ -56,7 +66,6 @@ class DashboardController extends AbstractDashboardController
                 }
             }
             $log->setItems($items);
-            dump($log);
         }
         $data = [
             'stock0' => $stock0,

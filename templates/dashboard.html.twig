@@ -34,12 +34,13 @@
   #}
 
   <div>
-    <h3>近15天出库记录</h3>
+    <h3>近15天出入库记录</h3>
     <table class="table table-striped table-hover">
         <thead>
           <tr>
               <th>时间</th>
               <th>箱子编号</th>
+              <th>进出</th>
               <th>器材</th>
               <th>备注</th>
           </tr>
@@ -48,7 +49,12 @@
         {% for i in logs %}
           <tr>
             <td>{{i.date|date("Y/m/d H:i:s")}}</td>
-            <td>{{i.id}}</td>
+            <td>{{i.box}}</td>
+            {% if i.direction %}
+            <td>进</td>
+            {% else %}
+            <td>出</td>
+            {% endif %}
             <td>{{i.items}}</td>
             <td>{{i.note}}</td>
           </tr>
