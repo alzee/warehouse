@@ -10,15 +10,15 @@
   <div class="badge d-flex justify-content-between">
     <div class="bg-success text-light p-3 px-5 h4 rounded">
       <p>库存总量</p>
-      <p class="m-0">123件</p>
+      <p class="m-0">{{stock0}}件</p>
     </div>
     <div class="bg-primary text-light p-3 px-5 h4 rounded">
       <p>当前库存</p>
-      <p class="m-0">123件</p>
+      <p class="m-0">{{stock}}件</p>
     </div>
     <div class="bg-info text-light p-3 px-5 h4 rounded">
       <p>使用中</p>
-      <p class="m-0">123件</p>
+      <p class="m-0">{{using}}件</p>
     </div>
   </div>
 
@@ -34,53 +34,25 @@
   #}
 
   <div>
-    <h3>近期出库记录</h3>
+    <h3>近15天出库记录</h3>
     <table class="table table-striped table-hover">
         <thead>
           <tr>
-              <th>日期</th>
-              <th>领用人</th>
-              <th>物品</th>
+              <th>时间</th>
+              <th>箱子编号</th>
+              <th>器材</th>
               <th>备注</th>
           </tr>
         </thead>
         <tbody>
+        {% for i in logs %}
           <tr>
-            <td>2021-1-2 12:12:12</td>
-            <td>王二</td>
-            <td>大米12袋</td>
-            <td>用于演习</td>
+            <td>{{i.date|date("Y/m/d H:i:s")}}</td>
+            <td>{{i.id}}</td>
+            <td>{{i.items}}</td>
+            <td>{{i.note}}</td>
           </tr>
-          <tr>
-            <td>2021-1-2 12:12:12</td>
-            <td>王二</td>
-            <td>大米12袋</td>
-            <td>用于演习</td>
-          </tr>
-          <tr>
-            <td>2021-1-2 12:12:12</td>
-            <td>王二</td>
-            <td>大米12袋</td>
-            <td>用于演习</td>
-          </tr>
-          <tr>
-            <td>2021-1-2 12:12:12</td>
-            <td>王二</td>
-            <td>大米12袋</td>
-            <td>用于演习</td>
-          </tr>
-          <tr>
-            <td>2021-1-2 12:12:12</td>
-            <td>王二</td>
-            <td>大米12袋</td>
-            <td>用于演习</td>
-          </tr>
-          <tr>
-            <td>2021-1-2 12:12:12</td>
-            <td>王二</td>
-            <td>大米12袋</td>
-            <td>用于演习</td>
-          </tr>
+        {% endfor %}
         </tbody>
     </table>
   </div>

@@ -37,6 +37,11 @@ class Log
      */
     private $note;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $items;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -86,6 +91,18 @@ class Log
     public function setNote(?string $note): self
     {
         $this->note = $note;
+
+        return $this;
+    }
+
+    public function getItems(): ?string
+    {
+        return $this->items;
+    }
+
+    public function setItems(string $items): self
+    {
+        $this->items = $items;
 
         return $this;
     }

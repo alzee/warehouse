@@ -29,20 +29,44 @@ class DashboardController extends AbstractDashboardController
      */
     public function index(): Response
     {
+        $doc = $this->getDoctrine();
         $stock0 = 0;
         $stock = 0;
-        $using = 0;
-        $log = [
-        ];
+        $entries = $doc->getRepository(Entry::class)->findAll();
+        $logs = $doc->getRepository(Log::class)->findBy([], ['date' => 'DESC'], 50);
+
+        foreach($entries as $entry){
+            $stock0 += $entry->getQuantity();
+            if($entry->getBox()->getStatus()){
+                $stock += $entry->getQuantity();
+            }
+
+        }
+        $using = $stock0 - $stock;
+
+        foreach($logs as $log){
+            $boxId = $log->getBox();
+            dump($log);
+            $items = '';
+            foreach($entries as $entry){
+                if($boxId == $entry->getBox()->getId()){
+                    $item = $entry->getItem()->getName();
+                    $quan = $entry->getQuantity();
+                    $items .= $item . 'x' . $quan . '  ';
+                }
+            }
+            $log->setItems($items);
+            dump($log);
+        }
         $data = [
             'stock0' => $stock0,
             'stock' => $stock,
             'using' => $using,
-            'log' => $log,
+            'logs' => $logs,
         ];
 
         //return parent::index();
-        return $this->render('dashboard.html.twig');
+        return $this->render('dashboard.html.twig', $data);
     }
 
     public function configureDashboard(): Dashboard
