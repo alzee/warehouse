@@ -62,20 +62,15 @@ class DashboardController extends AbstractDashboardController
 
                 if($boxId == $entry->getBox()->getId()){
                     $item = $entry->getItem()->getName();
+                    $unit = $entry->getItem()->getUnit();
                     $quan = $entry->getQuantity();
-                    array_push($items, $item . 'x' . $quan);
+                    array_push($items, $item . ' ' . $quan . ' ' . $unit);
                     // only 出库
                     if(!$log->getDirection()){
                         $months[$mon] += $entry->getQuantity();
                     }
                 }
-                //foreach($months as $k => $v){
-                //    if($k == $mon){
-                //        $months[$k] += $entry->getQuantity();
-                //    }
-                //}
             }
-            //$log->setItems($items);
             $log->items= $items;
         }
 
