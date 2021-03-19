@@ -29,6 +29,18 @@ class DashboardController extends AbstractDashboardController
      */
     public function index(): Response
     {
+        $stock0 = 0;
+        $stock = 0;
+        $using = 0;
+        $log = [
+        ];
+        $data = [
+            'stock0' => $stock0,
+            'stock' => $stock,
+            'using' => $using,
+            'log' => $log,
+        ];
+
         //return parent::index();
         return $this->render('dashboard.html.twig');
     }
