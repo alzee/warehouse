@@ -10,6 +10,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 
 class LogCrudController extends AbstractCrudController
 {
@@ -30,13 +31,14 @@ class LogCrudController extends AbstractCrudController
             TextField::new('box')->hideOnForm(),
             BooleanField::new('direction')->renderAsSwitch(0)->hideOnForm(),
             DateTimeField::new('date')->setFormat('y年MM月dd日 HH:mm:ss')->hideOnForm(),
-            TextField::new('note'),
+            TextareaField::new('note'),
         ];
     }
 
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
+            ->setDefaultSort(['date' => 'DESC'])
             ->overrideTemplate('crud/field/boolean', 'field_direction.html.twig')
         ;
     }

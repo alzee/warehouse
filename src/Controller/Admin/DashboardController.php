@@ -103,10 +103,10 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linktoDashboard('数据统计', 'fa fa-home');
         // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
         
-        yield  MenuItem::linkToCrud('新增品名', 'fa fa-tag', Item::class)->setAction('new');
-        yield  MenuItem::linkToCrud('物品列表', 'fa fa-tag', Item::class);
-        yield  MenuItem::linkToCrud('箱子列表', 'fa fa-tag', Box::class);
-        yield  MenuItem::linkToCrud('箱子物品', 'fa fa-tag', Entry::class);
+        yield  MenuItem::linkToCrud('新增器材', 'fa fa-tag', Item::class)->setAction('new');
+        yield  MenuItem::linkToCrud('器材列表', 'fa fa-tag', Item::class);
+        yield  MenuItem::linkToCrud('器材箱列表', 'fa fa-tag', Box::class);
+        yield  MenuItem::linkToCrud('器材箱器材', 'fa fa-tag', Entry::class);
         yield MenuItem::linkToCrud('进出记录', 'fa fa-tag', Log::class);
 
         /*

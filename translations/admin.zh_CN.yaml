@@ -1,6 +1,6 @@
 Category: 类别
 Name: 名称
-Item: 物品
+Item: 器材
 Take: 领用
 Back: 归还
 Loss: 损耗
@@ -15,9 +15,9 @@ Zone: 区域
 Warehouse: 仓库
 Returned: 已归还
 ID: 编号
-Box: 箱子
-entries: 箱子物品
-Entry: 箱子物品
+Box: 器材箱
+entries: 器材箱器材
+Entry: 器材箱器材
 isHome: 在库
 Log: 进出记录
 Status: 在库
