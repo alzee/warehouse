@@ -56,14 +56,14 @@ class DashboardController extends AbstractDashboardController
         foreach($logs as $log){
             $mon = $log->getDate()->format("Y/m");
             $boxId = $log->getBox();
-            $items = '';
+            $items = [];
 
             foreach($entries as $entry){
 
                 if($boxId == $entry->getBox()->getId()){
                     $item = $entry->getItem()->getName();
                     $quan = $entry->getQuantity();
-                    $items .= $item . 'x' . $quan . '  ';
+                    array_push($items, $item . 'x' . $quan);
                     // only 出库
                     if(!$log->getDirection()){
                         $months[$mon] += $entry->getQuantity();
@@ -75,7 +75,9 @@ class DashboardController extends AbstractDashboardController
                 //    }
                 //}
             }
-            $log->setItems($items);
+            //$log->setItems($items);
+            $log->items= $items;
+            dump($log);
         }
 
         $data = [

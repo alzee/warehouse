@@ -51,14 +51,18 @@
         <tbody>
         {% for i in logs %}
           <tr>
-            <td>{{i.date|date("Y/m/d H:i:s")}}</td>
+            <td colspan="1">{{i.date|date("Y/m/d H:i:s")}}</td>
             <td>{{i.box}}</td>
             {% if i.direction %}
             <td>进</td>
             {% else %}
             <td>出</td>
             {% endif %}
-            <td>{{i.items}}</td>
+            <td>
+            {% for j in i.items %}
+            <p class="mb-0"> {{ j }} </p>
+            {% endfor %}
+            </td>
             <td>{{i.note}}</td>
           </tr>
         {% endfor %}
