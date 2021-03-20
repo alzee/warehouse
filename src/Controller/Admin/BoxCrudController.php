@@ -38,7 +38,7 @@ class BoxCrudController extends AbstractCrudController
 
     public function configureActions(Actions $actions): Actions
     {
-        $boxEntries = Action::new('boxEntries', 'entries')->linkToCrudAction('boxEntries');
+        $boxEntries = Action::new('boxEntries', 'boxEntries')->linkToCrudAction('boxEntries');
 
         return $actions
             ->add(Crud::PAGE_INDEX, $boxEntries);

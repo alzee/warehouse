@@ -22,12 +22,13 @@ class EntryCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
+            dump(TextField::new('unit'));
         return [
             //IdField::new('id')->hideOnForm(),
             AssociationField::new('box'),
             AssociationField::new('item'),
             IntegerField::new('quantity'),
-            TextField::new('unit'),
+            TextField::new('unit')->hideOnForm(),
         ];
     }
 

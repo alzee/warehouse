@@ -16,7 +16,7 @@ Warehouse: 仓库
 Returned: 已归还
 ID: 编号
 Box: 器材箱
-entries: 器材箱器材
+boxEntries: 查看器材
 Entry: 器材箱器材
 isHome: 在库
 Log: 进出记录
