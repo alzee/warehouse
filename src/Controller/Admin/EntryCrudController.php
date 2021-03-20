@@ -22,7 +22,6 @@ class EntryCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-            dump(TextField::new('unit'));
         return [
             //IdField::new('id')->hideOnForm(),
             AssociationField::new('box'),
