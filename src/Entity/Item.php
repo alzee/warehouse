@@ -55,6 +55,11 @@ class Item
      */
     private $unit;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $count;
+
     public function __construct()
     {
         $this->boxes = new ArrayCollection();
@@ -196,6 +201,18 @@ class Item
     public function setUnit(?string $unit): self
     {
         $this->unit = $unit;
+
+        return $this;
+    }
+
+    public function getCount(): ?int
+    {
+        return $this->count;
+    }
+
+    public function setCount(?int $count): self
+    {
+        $this->count = $count;
 
         return $this;
     }
