@@ -104,8 +104,8 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('器材箱列表', 'fa fa-box', Box::class);
         yield MenuItem::linkToCrud('器材箱器材', 'fa fa-th', Entry::class);
         yield MenuItem::linkToCrud('进出记录', 'fa fa-people-carry', Log::class);
-        yield MenuItem::linkToCrud('盘点录入', 'fa fa-pen', Log::class);
-        yield MenuItem::linkToCrud('盘点统计', 'fa fa-align-right', Log::class);
+        yield MenuItem::linkToCrud('盘点录入', 'fa fa-pen', Item::class)->setController(Item2CrudController::class);
+        yield MenuItem::linkToCrud('盘点统计', 'fa fa-align-right', Item::class);
 
         /*
         yield MenuItem::subMenu('仓库管理 ', 'fa fa-tags')->setSubItems([
