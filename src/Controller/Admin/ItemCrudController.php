@@ -33,6 +33,18 @@ use EasyCorp\Bundle\EasyAdminBundle\Event\AfterCrudActionEvent;
 
 class ItemCrudController extends AbstractCrudController
 {
+        /*
+    public function configureActions(Actions $actions): Actions
+    {
+        $viewInvoice = Action::new('viewInvoice')
+            ->linkToCrudAction('Dashboard')
+            ;
+
+        return $actions
+            ->addBatchAction(Crud::PAGE_INDEX, $viewInvoice);
+    }
+         */
+
     public static function getEntityFqcn(): string
     {
         return Item::class;
@@ -71,9 +83,11 @@ class ItemCrudController extends AbstractCrudController
             return $event->getResponse();
         }
 
+        /*
         if (!$this->isGranted(Permission::EA_EXECUTE_ACTION)) {
             throw new ForbiddenActionException($context);
         }
+         */
 
         $fields = FieldCollection::new($this->configureFields(Crud::PAGE_INDEX));
         $filters = $this->get(FilterFactory::class)->create($context->getCrud()->getFiltersConfig(), $fields, $context->getEntity());
