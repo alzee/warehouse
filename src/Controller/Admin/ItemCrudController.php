@@ -65,6 +65,7 @@ class ItemCrudController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
+            ->overrideTemplate('crud/index', 'itemlist.html.twig')
             //->setPageTitle('index', '%entity_label_plural% list');
             ->setPageTitle('new', '新增品名');
             ;
