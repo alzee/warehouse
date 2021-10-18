@@ -45,7 +45,7 @@ class DashboardController extends AbstractDashboardController
         $using = $stock0 - $stock;
 
         $months = [];
-        for($i = 5; $i >= 0; $i--){
+        for($i = 8; $i >= 0; $i--){
             array_push($months, date("Y/m", strtotime("-$i month")));
         }
         $months = (array_flip($months));
