@@ -22,8 +22,8 @@ class Item2CrudController extends AbstractCrudController
     {
         return [
             IdField::new('id')->onlyOnIndex(),
-            TextField::new('name'),
-            TextField::new('unit'),
+            TextField::new('name')->onlyOnIndex(),
+            TextField::new('unit')->onlyOnIndex(),
             IntegerField::new('count'),
         ];
     }
@@ -33,6 +33,7 @@ class Item2CrudController extends AbstractCrudController
         return $actions
             // ->addBatchAction(Crud::PAGE_INDEX, $viewInvoice)
             ->remove(Crud::PAGE_INDEX, 'new')
+            ->remove(Crud::PAGE_INDEX, 'delete')
         ;
     }
 
@@ -44,4 +45,5 @@ class Item2CrudController extends AbstractCrudController
             ->setPageTitle('new', '新增品名');
             ;
     }
+
 }
