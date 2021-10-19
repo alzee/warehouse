@@ -62,8 +62,6 @@ class Item3CrudController extends AbstractCrudController
     {
         return $crud
             ->overrideTemplate('crud/index', 'count_stat.html.twig')
-            //->setPageTitle('index', '%entity_label_plural% list');
-            ->setPageTitle('new', '新增品名');
             ;
     }
 
