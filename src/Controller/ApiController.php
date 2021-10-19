@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Item;
+use App\Entity\Entry;
 use App\Entity\Log;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
@@ -83,15 +84,48 @@ class ApiController extends AbstractController
         foreach($th as $k => $v){
             $sheet->setCellValue($k, $v);
         }
-        $logs = $this->getDoctrine()->getRepository(Log::class)->findAll();
-        foreach($logs as $k => $v){
-            $sheet->setCellValue('A' . ($k + 2), $v->getDate());
-            $sheet->setCellValue('B' . ($k + 2), $v->getBox());
-            $sheet->setCellValue('C' . ($k + 2), $v->getDirection());
-            $sheet->setCellValue('E' . ($k + 2), $v->getNote());
+        $items = $this->getDoctrine()->getRepository(Item::class)->findAll();
+        foreach($items as $k => $v){
+            $sheet->setCellValue('A' . ($k + 2), $v->getId());
+            $sheet->setCellValue('B' . ($k + 2), $v->getName());
+            $sheet->setCellValue('C' . ($k + 2), $v->getUnit());
+            $sheet->setCellValue('E' . ($k + 2), $v->getStock());
         }
         date_default_timezone_set('Asia/Shanghai');
         $file = 'xlsx/器材列表' . date('YmdHis') . '.xlsx';
+        $writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($spreadsheet, "Xlsx");
+        $writer->save($file);
+
+        return $this->file($file);
+    }
+
+    /**
+     * @Route("/count_stat/export", name="export_count_stat")
+     */
+    function exportCountStat()
+    {
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+        $th = [
+            'A1' => '编号',
+            'B1' => '名称',
+            'C1' => '单位',
+            'D1' => '盘点数量',
+            'E1' => '系统数量',
+            'E1' => '盈亏',
+        ];
+        foreach($th as $k => $v){
+            $sheet->setCellValue($k, $v);
+        }
+        $items = $this->getDoctrine()->getRepository(Item::class)->findAll();
+        foreach($items as $k => $v){
+            $sheet->setCellValue('A' . ($k + 2), $v->getId());
+            $sheet->setCellValue('B' . ($k + 2), $v->getName());
+            $sheet->setCellValue('C' . ($k + 2), $v->getUnit());
+            $sheet->setCellValue('E' . ($k + 2), $v->getCount());
+        }
+        date_default_timezone_set('Asia/Shanghai');
+        $file = 'xlsx/盘点明细' . date('YmdHis') . '.xlsx';
         $writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($spreadsheet, "Xlsx");
         $writer->save($file);
 
