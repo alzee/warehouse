@@ -41,6 +41,7 @@ class Item2CrudController extends AbstractCrudController
     {
         return $crud
             ->overrideTemplate('crud/index', 'count.html.twig')
+            ->setPageTitle('index', '盘点录入')
             ;
     }
 
