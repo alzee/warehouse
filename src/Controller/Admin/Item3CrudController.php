@@ -110,6 +110,7 @@ class Item3CrudController extends AbstractCrudController
             // dump($quan);
             $v->getInstance()->setStock0($stock0);
             $v->getInstance()->setStock($stock);
+            $v->getInstance()->setDiff($v->getInstance()->getCount() - $stock);
         };
 
         $this->get(EntityFactory::class)->processFieldsForAll($entities, $fields);
