@@ -26,8 +26,6 @@ class ApiController extends AbstractController
         }
         $em->flush();
 
-        return $this->json([
-            'code' => 0
-        ]);
+        return $this->redirect('/admin?crudAction=index&crudControllerFqcn=App%5CController%5CAdmin%5CItem2CrudController&entityFqcn=App%5CEntity%5CItem&menuIndex=6&signature=_1YMBtKZQvfeCkkyuhVTUIIHrGXjl9TRvOtd4G47wek&submenuIndex=-1');
     }
 }
