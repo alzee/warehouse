@@ -54,6 +54,7 @@ class Item3CrudController extends AbstractCrudController
             TextField::new('unit'),
             IntegerField::new('count'),
             IntegerField::new('stock', 'stock_in_record'),
+            IntegerField::new('diff'),
         ];
     }
 
