@@ -65,4 +65,36 @@ class ApiController extends AbstractController
 
         return $this->file($file);
     }
+
+    /**
+     * @Route("/items/export", name="export_items")
+     */
+    function exportItems()
+    {
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+        $th = [
+            'A1' => '编号',
+            'B1' => '名称',
+            'C1' => '单位',
+            'D1' => '当前库存',
+            'E1' => '总库存',
+        ];
+        foreach($th as $k => $v){
+            $sheet->setCellValue($k, $v);
+        }
+        $logs = $this->getDoctrine()->getRepository(Log::class)->findAll();
+        foreach($logs as $k => $v){
+            $sheet->setCellValue('A' . ($k + 2), $v->getDate());
+            $sheet->setCellValue('B' . ($k + 2), $v->getBox());
+            $sheet->setCellValue('C' . ($k + 2), $v->getDirection());
+            $sheet->setCellValue('E' . ($k + 2), $v->getNote());
+        }
+        date_default_timezone_set('Asia/Shanghai');
+        $file = 'xlsx/器材列表' . date('YmdHis') . '.xlsx';
+        $writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($spreadsheet, "Xlsx");
+        $writer->save($file);
+
+        return $this->file($file);
+    }
 }
