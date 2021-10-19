@@ -60,6 +60,11 @@ class Item
      */
     private $count;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $diff;
+
     public function __construct()
     {
         $this->boxes = new ArrayCollection();
@@ -213,6 +218,18 @@ class Item
     public function setCount(?int $count): self
     {
         $this->count = $count;
+
+        return $this;
+    }
+
+    public function getDiff(): ?int
+    {
+        return $this->diff;
+    }
+
+    public function setDiff(?int $diff): self
+    {
+        $this->diff = $diff;
 
         return $this;
     }
