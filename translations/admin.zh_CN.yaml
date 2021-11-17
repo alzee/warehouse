@@ -29,3 +29,6 @@ stock_in_record: 系统数量
 Diff: 盈亏
 Manufacturer: 生产厂商
 Vendor: 供应商
+Location: 位置
+Barcode: 条码
+Is Item: 单件
