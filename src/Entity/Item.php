@@ -65,6 +65,16 @@ class Item
      */
     private $diff;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $manufacturer;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $vendor;
+
     public function __construct()
     {
         $this->boxes = new ArrayCollection();
@@ -230,6 +240,30 @@ class Item
     public function setDiff(?int $diff): self
     {
         $this->diff = $diff;
+
+        return $this;
+    }
+
+    public function getManufacturer(): ?string
+    {
+        return $this->manufacturer;
+    }
+
+    public function setManufacturer(?string $manufacturer): self
+    {
+        $this->manufacturer = $manufacturer;
+
+        return $this;
+    }
+
+    public function getVendor(): ?string
+    {
+        return $this->vendor;
+    }
+
+    public function setVendor(?string $vendor): self
+    {
+        $this->vendor = $vendor;
 
         return $this;
     }
