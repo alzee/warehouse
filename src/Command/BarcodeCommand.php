@@ -8,6 +8,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
+use App\Entity\Log;
 use App\Entity\Box;
 use App\Repository\BoxRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -45,7 +46,15 @@ class BarcodeCommand extends Command
         if ($arg1) {
             $box = $this->boxRepo->findOneBy(['barcode' => $arg1]);
             $box->setStatus(1 - $box->getStatus());
+
+            $log = new Log();
+            // $log->setDate();
+            $log->setBox($box);
+            $log->setDirection(1);
+
+            $this->em->persist($log);
             $this->em->flush();
+
             $io->note($box);
             // $io->note(sprintf('You passed an argument: %s', $arg1));
         }
