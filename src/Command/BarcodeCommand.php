@@ -50,7 +50,7 @@ class BarcodeCommand extends Command
             $log = new Log();
             // $log->setDate();
             $log->setBox($box);
-            $log->setDirection(1);
+            $log->setDirection($box->getStatus());
 
             $this->em->persist($log);
             $this->em->flush();
