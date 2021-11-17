@@ -27,3 +27,5 @@ Unit: 单位
 Count: 盘点数量
 stock_in_record: 系统数量
 Diff: 盈亏
+Manufacturer: 生产厂商
+Vendor: 供应商
