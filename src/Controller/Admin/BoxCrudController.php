@@ -36,6 +36,9 @@ class BoxCrudController extends AbstractCrudController
             IdField::new('id')->onlyOnIndex(),
             BooleanField::new('status', 'isHome')->renderAsSwitch(0),
             TextField::new('category'),
+            TextField::new('barcode')->hideOnIndex(),
+            TextField::new('location'),
+            BooleanField::new('isItem')->hideOnIndex(),
         ];
     }
 

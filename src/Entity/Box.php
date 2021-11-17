@@ -39,6 +39,21 @@ class Box
      */
     private $status;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $barcode;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $location;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $isItem;
+
     public function __construct()
     {
         $this->items = new ArrayCollection();
@@ -129,6 +144,42 @@ class Box
     public function setStatus(bool $status): self
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    public function getBarcode(): ?string
+    {
+        return $this->barcode;
+    }
+
+    public function setBarcode(?string $barcode): self
+    {
+        $this->barcode = $barcode;
+
+        return $this;
+    }
+
+    public function getLocation(): ?string
+    {
+        return $this->location;
+    }
+
+    public function setLocation(?string $location): self
+    {
+        $this->location = $location;
+
+        return $this;
+    }
+
+    public function getIsItem(): ?bool
+    {
+        return $this->isItem;
+    }
+
+    public function setIsItem(?bool $isItem): self
+    {
+        $this->isItem = $isItem;
 
         return $this;
     }
