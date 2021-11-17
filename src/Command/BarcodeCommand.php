@@ -48,7 +48,6 @@ class BarcodeCommand extends Command
             $box->setStatus(1 - $box->getStatus());
 
             $log = new Log();
-            // $log->setDate();
             $log->setBox($box);
             $log->setDirection($box->getStatus());
 

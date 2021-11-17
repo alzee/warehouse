@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Item;
+use App\Entity\Box;
 use App\Entity\Entry;
 use App\Entity\Log;
 use PhpOffice\PhpSpreadsheet\IOFactory;
@@ -33,6 +34,26 @@ class ApiController extends AbstractController
         $em->flush();
 
         return $this->redirect('/admin?crudAction=index&crudControllerFqcn=App%5CController%5CAdmin%5CItem2CrudController&entityFqcn=App%5CEntity%5CItem&menuIndex=6&signature=_1YMBtKZQvfeCkkyuhVTUIIHrGXjl9TRvOtd4G47wek&submenuIndex=-1');
+    }
+
+    /**
+     * @Route("/barcode/{barcode}", name="barcode")
+     */
+    function barcode(int $barcode)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $box = $em->getRepository(Box::class)->findOneBy(['barcode' => $barcode]);
+        $box->setStatus(1 - $box->getStatus());
+
+        $log = new Log();
+        $log->setBox($box);
+        $log->setDirection($box->getStatus());
+
+        $em->persist($log);
+        $em->flush();
+
+        return $this->json(0);
     }
 
     /**
