@@ -12,7 +12,7 @@
         "doctrine/doctrine-bundle": "^2.2",
         "doctrine/doctrine-migrations-bundle": "^3.0",
         "doctrine/orm": "^2.8",
-        "easycorp/easyadmin-bundle": "^3.2",
+        "easycorp/easyadmin-bundle": "~3.2.0",
         "phpdocumentor/reflection-docblock": "^5.2",
         "phpoffice/phpspreadsheet": "^1.18",
         "sensio/framework-extra-bundle": "^5.1",
