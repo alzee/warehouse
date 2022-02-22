@@ -11,16 +11,6 @@ for (let i = 0; i < months.length; i++){
 let options = {
     responsive:true,
     maintainAspectRatio: false,
-    legend: {
-        display: false,
-    },
-    scales: {
-        yAxes: [{
-            ticks: {
-                beginAtZero: true
-            }
-        }]
-    }
 };
 
 let chart1 = new Chart(ctx1, {
