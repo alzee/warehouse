@@ -67,7 +67,7 @@ class DashboardController extends AbstractDashboardController
                     array_push($items, $item . ' ' . $quan . ' ' . $unit);
                     // only 出库
                     if(!$log->getDirection()){
-                        $months[$mon] += $entry->getQuantity();
+                        // $months[$mon] += $entry->getQuantity();
                     }
                 }
             }

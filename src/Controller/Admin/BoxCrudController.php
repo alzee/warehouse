@@ -51,7 +51,6 @@ class BoxCrudController extends AbstractCrudController
             ->set('filters', ['box'=> $id])
             ->generateUrl();
         return $this->redirect($url . '&filters%5Bbox%5D%5Bcomparison%5D=%3D&filters%5Bbox%5D%5Bvalue%5D=' . $id);
-        // return $this->redirect('http://warehouse/admin?referrer=%2Fadmin%3FcrudAction%3Dindex%26crudControllerFqcn%3DApp%255CController%255CAdmin%255CEntryCrudController%26menuIndex%3D1%26signature%3DaiE8iHC8HTQiY4X8doxA0ZDCcg_f17Rpqm8K9m2DlX0%26submenuIndex%3D3&crudAction=index&crudControllerFqcn=App%5CController%5CAdmin%5CEntryCrudController&menuIndex=1&signature=aiE8iHC8HTQiY4X8doxA0ZDCcg_f17Rpqm8K9m2DlX0&submenuIndex=3&filters%5Bbox%5D%5Bcomparison%5D=%3D&filters%5Bbox%5D%5Bvalue%5D=' . $id);
     }
 
     public function configureActions(Actions $actions): Actions
