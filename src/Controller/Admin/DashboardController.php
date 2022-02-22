@@ -45,7 +45,7 @@ class DashboardController extends AbstractDashboardController
         $using = $stock0 - $stock;
 
         $months = [];
-        for($i = 8; $i >= 0; $i--){
+        for($i = 5; $i >= 0; $i--){
             array_push($months, date("Y/m", strtotime("-$i month")));
         }
         $months = (array_flip($months));
@@ -67,11 +67,13 @@ class DashboardController extends AbstractDashboardController
                     array_push($items, $item . ' ' . $quan . ' ' . $unit);
                     // only 出库
                     if(!$log->getDirection()){
-                        // $months[$mon] += $entry->getQuantity();
+                        if (isset($months[$mon])) {
+                            $months[$mon] += $entry->getQuantity();
+                        }
                     }
                 }
             }
-            $log->items= $items;
+            $log->items = $items;
         }
 
         $data = [
