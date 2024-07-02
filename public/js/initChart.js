@@ -7,6 +7,7 @@ for (let i = 0; i < months.length; i++){
   labels.push(months[i].dataset.month);
   data.push(months[i].dataset.quan);
 }
+data = [1,4,3,5,2,8,7,6,5,4,2,7,9,1];
 
 let options = {
     responsive:true,
