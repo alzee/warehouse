@@ -80,7 +80,7 @@ class Item2CrudController extends AbstractCrudController
         $response->headers->set('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
         $response->headers->set('Content-Disposition', $response->headers->makeDisposition(
             ResponseHeaderBag::DISPOSITION_ATTACHMENT,
-            '盘点单.xlsx'
+            'pan_dian_dan.xlsx'
         ));
 
         return $response;
