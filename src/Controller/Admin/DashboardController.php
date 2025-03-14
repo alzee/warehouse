@@ -110,7 +110,7 @@ class DashboardController extends AbstractDashboardController
 
         yield MenuItem::linkToCrud('器材箱列表', 'fa fa-box', Box::class);
         yield MenuItem::linkToCrud('器材箱器材', 'fa fa-th', Entry::class);
-        yield MenuItem::linkToCrud('器材箱进出记录', 'fa fa-people-carry', Log::class);
+        yield MenuItem::linkToCrud('进出记录', 'fa fa-people-carry', Log::class);
 
         yield MenuItem::section('Item Management');
 
