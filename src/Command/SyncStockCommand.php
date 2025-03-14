@@ -40,6 +40,11 @@ class SyncStockCommand extends Command
         $io = new SymfonyStyle($input, $output);
         // $arg1 = $input->getArgument('arg1');
 
+        $items = $this->em->getRepository(Item::class)->findAll();
+        foreach($items as $i){
+            $i->setStock(0);
+        }
+
         $entries = $this->em->getRepository(Entry::class)->findAll();
 
         foreach($entries as $entry){
@@ -49,7 +54,7 @@ class SyncStockCommand extends Command
             }
         }
         
-        $em->flush();
+        $this->em->flush();
 
         $io->success('Done.');
 
