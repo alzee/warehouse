@@ -31,7 +31,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Factory\PaginatorFactory;
 use EasyCorp\Bundle\EasyAdminBundle\Config\KeyValueStore;
 use EasyCorp\Bundle\EasyAdminBundle\Event\AfterCrudActionEvent;
 
-class ItemCrudController extends AbstractCrudController
+class Item1CrudController extends AbstractCrudController
 {
         /*
     public function configureActions(Actions $actions): Actions
@@ -58,7 +58,7 @@ class ItemCrudController extends AbstractCrudController
             TextField::new('unit'),
             TextField::new('manufacturer')->hideOnIndex(),
             TextField::new('vendor')->hideOnIndex(),
-            // IntegerField::new('stock')->onlyOnIndex(),
+            IntegerField::new('stock')->onlyOnIndex(),
             // IntegerField::new('stock0')->onlyOnIndex(),
             //AssociationField::new('entries'),
         ];
@@ -76,5 +76,14 @@ class ItemCrudController extends AbstractCrudController
     public function createIndexQueryBuilder(SearchDto $searchDto, EntityDto $entityDto, FieldCollection $fields, FilterCollection $filters): QueryBuilder
     {
         return $this->get(EntityRepository::class)->createQueryBuilder($searchDto, $entityDto, $fields, $filters);
+    }
+
+    public function configureActions(Actions $actions): Actions
+    {
+        return $actions
+            ->remove(Crud::PAGE_INDEX, 'new')
+            ->remove(Crud::PAGE_INDEX, 'edit')
+            ->remove(Crud::PAGE_INDEX, 'delete')
+        ;
     }
 }
