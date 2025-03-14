@@ -52,13 +52,18 @@ class Item3CrudController extends AbstractCrudController
 
     public function configureActions(Actions $actions): Actions
     {
-        $updateStockAction = Action::new('updateAllStock', 'Update All Stock')
+        $updateStock = Action::new('updateStock', 'Update All Stock')
             ->linkToCrudAction('updateAllStock')
             ->createAsGlobalAction()
-            ->addCssClass('btn btn-primary');
+            ->addCssClass('btn btn-primary')
+            ->displayAsButton()
+            ->setCssClass('btn btn-primary')
+            ->setHtmlAttributes([
+                'onclick' => 'return confirm("Are you sure you want to update all items stock to match count?")'
+            ]);
 
         return $actions
-            ->add(Crud::PAGE_INDEX, $updateStockAction)
+            ->add(Crud::PAGE_INDEX, $updateStock)
             ->remove(Crud::PAGE_INDEX, 'new')
             ->remove(Crud::PAGE_INDEX, 'edit')
             ->remove(Crud::PAGE_INDEX, 'delete');
