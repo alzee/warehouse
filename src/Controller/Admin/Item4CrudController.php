@@ -52,11 +52,11 @@ class Item4CrudController extends AbstractCrudController
 
     public function configureActions(Actions $actions): Actions
     {
-        $updateStock = Action::new('updateStock', 'Update All Stock')
+        $updateStock = Action::new('updateStock', '盘点结算')
             ->linkToCrudAction('updateAllStock')
             ->createAsGlobalAction()
             ->addCssClass('btn btn-primary action-modal')
-            ->setIcon('fa fa-sync')
+            ->setIcon('fa fa-stamp')
             ->setHtmlAttributes([
                 'data-toggle' => 'modal',
                 'data-target' => '#modal-update-stock',
@@ -97,7 +97,7 @@ class Item4CrudController extends AbstractCrudController
         }
         
         $this->entityManager->flush();
-        $this->addFlash('success', 'All items stock updated to match count.');
+        $this->addFlash('success', '系统库存已被盘点数量覆盖！');
 
         return $this->redirect($this->adminUrlGenerator
             ->setController(self::class)
