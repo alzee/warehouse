@@ -57,10 +57,9 @@ class Item3CrudController extends AbstractCrudController
             ->createAsGlobalAction()
             ->addCssClass('btn btn-primary')
             ->displayAsButton()
-            ->setCssClass('btn btn-primary')
-            ->setHtmlAttributes([
-                'onclick' => 'return confirm("Are you sure you want to update all items stock to match count?")'
-            ]);
+            ->setIcon('fa fa-sync')
+            ->displayAsModal()
+            ->setTemplatePath('admin/update_stock_modal.html.twig');
 
         return $actions
             ->add(Crud::PAGE_INDEX, $updateStock)
