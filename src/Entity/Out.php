@@ -2,14 +2,14 @@
 
 namespace App\Entity;
 
-use App\Repository\InRepository;
+use App\Repository\OutRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=InRepository::class)
- * @ORM\Table(name="`in`")
+ * @ORM\Entity(repositoryClass=OutRepository::class)
+ * @ORM\Table(name="`out`")
  */
-class In
+class Out
 {
     /**
      * @ORM\Id
