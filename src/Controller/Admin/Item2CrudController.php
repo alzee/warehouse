@@ -36,6 +36,8 @@ class Item2CrudController extends AbstractCrudController
     {
         $exportAction = Action::new('export', '导出盘点单')
             ->linkToCrudAction('exportXlsx')
+            ->addCssClass('btn btn-primary')
+            // ->setIcon('fa fa-user-check')
             ->createAsGlobalAction();
 
         return $actions
