@@ -114,15 +114,15 @@ class DashboardController extends AbstractDashboardController
 
         yield MenuItem::section('Item Management');
 
-        yield MenuItem::linkToCrud('入库管理', 'fa fa-cogs', In::class);
-        yield MenuItem::linkToCrud('出库管理', 'fa fa-cogs', Out::class);
-        yield MenuItem::linkToCrud('报损管理', 'fa fa-cogs', Loss::class);
+        yield MenuItem::linkToCrud('入库管理', 'fa fa-long-arrow-alt-right', In::class);
+        yield MenuItem::linkToCrud('出库管理', 'fa fa-long-arrow-alt-left', Out::class);
+        yield MenuItem::linkToCrud('报损管理', 'fa fa-trash', Loss::class);
 
         yield MenuItem::section('Counting Management');
 
         yield MenuItem::linkToCrud('盘点录入', 'fa fa-pen', Item::class)->setController(Item2CrudController::class);
         yield MenuItem::linkToCrud('盘点统计', 'fa fa-align-right', Item::class)->setController(Item3CrudController::class);
-        yield MenuItem::linkToCrud('盘点审核', 'fa fa-align-right', Item::class)->setController(Item4CrudController::class);
+        yield MenuItem::linkToCrud('盘点审核', 'fa fa-stamp', Item::class)->setController(Item4CrudController::class);
 
         /*
         yield MenuItem::subMenu('仓库管理 ', 'fa fa-tags')->setSubItems([
