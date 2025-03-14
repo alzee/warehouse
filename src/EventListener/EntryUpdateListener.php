@@ -14,7 +14,8 @@ class EntryUpdateListener
         $currentStock = $item->getStock();
         $item->setStock($currentStock + $entry->getQuantity());
         
-        $entityManager = $event->getEntityManager();
+        // $entityManager = $event->getEntityManager();
+        $entityManager = $event->getObjectManager();
         $entityManager->flush();
     }
 }
