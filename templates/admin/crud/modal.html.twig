@@ -1,0 +1,18 @@
+{# filepath: /home/al/w/warehouse/templates/admin/crud/modal.html.twig #}
+<div class="modal fade" id="modal-update-stock">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Update Stock</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to update all items stock to match count?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <a href="{{ ea_url().setAction('updateAllStock').generateUrl() }}" class="btn btn-primary">Confirm</a>
+            </div>
+        </div>
+    </div>
+</div>

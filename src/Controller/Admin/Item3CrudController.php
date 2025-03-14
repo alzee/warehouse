@@ -55,11 +55,12 @@ class Item3CrudController extends AbstractCrudController
         $updateStock = Action::new('updateStock', 'Update All Stock')
             ->linkToCrudAction('updateAllStock')
             ->createAsGlobalAction()
-            ->addCssClass('btn btn-primary')
-            ->displayAsButton()
+            ->addCssClass('btn btn-primary action-modal')
             ->setIcon('fa fa-sync')
-            ->displayAsModal()
-            ->setTemplatePath('admin/update_stock_modal.html.twig');
+            ->setHtmlAttributes([
+                'data-bs-toggle' => 'modal',
+                'data-bs-target' => '#modal-update-stock',
+            ]);
 
         return $actions
             ->add(Crud::PAGE_INDEX, $updateStock)
