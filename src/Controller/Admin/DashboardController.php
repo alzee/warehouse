@@ -103,6 +103,8 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linktoDashboard('数据统计', 'fa fa-chart-bar');
         // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
         
+        yield MenuItem::section('Item Management');
+
         yield MenuItem::linkToCrud('新增器材', 'fa fa-puzzle-piece', Item::class)->setAction('new');
         yield MenuItem::linkToCrud('器材列表', 'fa fa-cogs', Item::class);
 
@@ -112,7 +114,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('器材箱器材', 'fa fa-th', Entry::class);
         yield MenuItem::linkToCrud('进出记录', 'fa fa-people-carry', Log::class);
 
-        yield MenuItem::section('Item Management');
+        yield MenuItem::section('Item Stocking');
 
         yield MenuItem::linkToCrud('入库管理', 'fa fa-long-arrow-alt-right', In::class);
         yield MenuItem::linkToCrud('出库管理', 'fa fa-long-arrow-alt-left', Out::class);
