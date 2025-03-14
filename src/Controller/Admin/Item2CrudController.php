@@ -65,7 +65,7 @@ class Item2CrudController extends AbstractCrudController
             $sheet->setCellValue('A' . $row, $item->getId());
             $sheet->setCellValue('B' . $row, $item->getName());
             $sheet->setCellValue('C' . $row, $item->getUnit());
-            $sheet->setCellValue('D' . $row, $item->getCount());
+            $sheet->setCellValue('D' . $row, null);
             $row++;
         }
 
