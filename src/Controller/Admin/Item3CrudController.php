@@ -58,8 +58,8 @@ class Item3CrudController extends AbstractCrudController
             ->addCssClass('btn btn-primary action-modal')
             ->setIcon('fa fa-sync')
             ->setHtmlAttributes([
-                'data-bs-toggle' => 'modal',
-                'data-bs-target' => '#modal-update-stock',
+                'data-toggle' => 'modal',
+                'data-target' => '#modal-update-stock',
             ]);
 
         return $actions
