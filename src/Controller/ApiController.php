@@ -133,7 +133,7 @@ class ApiController extends AbstractController
             'C1' => '单位',
             'D1' => '盘点数量',
             'E1' => '系统数量',
-            'E1' => '盈亏',
+            'F1' => '盈亏',
         ];
         foreach($th as $k => $v){
             $sheet->setCellValue($k, $v);
@@ -143,7 +143,9 @@ class ApiController extends AbstractController
             $sheet->setCellValue('A' . ($k + 2), $v->getId());
             $sheet->setCellValue('B' . ($k + 2), $v->getName());
             $sheet->setCellValue('C' . ($k + 2), $v->getUnit());
-            $sheet->setCellValue('E' . ($k + 2), $v->getCount());
+            $sheet->setCellValue('D' . ($k + 2), $v->getCount());
+            $sheet->setCellValue('E' . ($k + 2), $v->getStock());
+            $sheet->setCellValue('F' . ($k + 2), $v->getCount() - $v->getStock());
         }
         date_default_timezone_set('Asia/Shanghai');
         $file = 'xlsx/盘点明细' . date('YmdHis') . '.xlsx';
