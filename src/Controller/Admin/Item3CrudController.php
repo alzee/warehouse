@@ -94,6 +94,7 @@ class Item3CrudController extends AbstractCrudController
         $items = $this->entityManager->getRepository(Item::class)->findAll();
         foreach ($items as $item) {
             $item->setStock($item->getCount());
+            $item->setCount(0);
         }
         
         $this->entityManager->flush();
