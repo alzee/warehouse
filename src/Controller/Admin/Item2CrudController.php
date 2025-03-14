@@ -34,7 +34,7 @@ class Item2CrudController extends AbstractCrudController
 
     public function configureActions(Actions $actions): Actions
     {
-        $exportAction = Action::new('export', 'Export XLSX')
+        $exportAction = Action::new('export', '导出盘点单')
             ->linkToCrudAction('exportXlsx')
             ->createAsGlobalAction();
 
@@ -54,10 +54,10 @@ class Item2CrudController extends AbstractCrudController
         $sheet = $spreadsheet->getActiveSheet();
         
         // Headers
-        $sheet->setCellValue('A1', 'ID');
-        $sheet->setCellValue('B1', 'Name');
-        $sheet->setCellValue('C1', 'Unit');
-        $sheet->setCellValue('D1', 'Count');
+        $sheet->setCellValue('A1', '编号');
+        $sheet->setCellValue('B1', '名称');
+        $sheet->setCellValue('C1', '单位');
+        $sheet->setCellValue('D1', '盘点数量');
 
         // Data
         $row = 2;
@@ -80,7 +80,7 @@ class Item2CrudController extends AbstractCrudController
         $response->headers->set('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
         $response->headers->set('Content-Disposition', $response->headers->makeDisposition(
             ResponseHeaderBag::DISPOSITION_ATTACHMENT,
-            'items.xlsx'
+            '盘点单.xlsx'
         ));
 
         return $response;
