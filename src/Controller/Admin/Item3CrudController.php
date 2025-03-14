@@ -28,9 +28,18 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Response;
 
 class Item3CrudController extends AbstractCrudController
 {
+    private $entityManager;
+
+    public function __construct(EntityManagerInterface $entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
+
     public static function getEntityFqcn(): string
     {
         return Item::class;
@@ -38,12 +47,16 @@ class Item3CrudController extends AbstractCrudController
 
     public function configureActions(Actions $actions): Actions
     {
+        $updateStockAction = Action::new('updateAllStock', 'Update All Stock')
+            ->linkToCrudAction('updateAllStock')
+            ->createAsGlobalAction()
+            ->addCssClass('btn btn-primary');
+
         return $actions
-            // ->addBatchAction(Crud::PAGE_INDEX, $viewInvoice)
+            ->add(Crud::PAGE_INDEX, $updateStockAction)
             ->remove(Crud::PAGE_INDEX, 'new')
             ->remove(Crud::PAGE_INDEX, 'edit')
-            ->remove(Crud::PAGE_INDEX, 'delete')
-        ;
+            ->remove(Crud::PAGE_INDEX, 'delete');
     }
 
     public function configureFields(string $pageName): iterable
@@ -62,8 +75,7 @@ class Item3CrudController extends AbstractCrudController
     {
         return $crud
             ->overrideTemplate('crud/index', 'count_stat.html.twig')
-            ->setPageTitle('index', '盘点统计')
-            ;
+            ->setPageTitle('index', '盘点统计');
     }
 
     public function index(AdminContext $context)
@@ -132,5 +144,23 @@ class Item3CrudController extends AbstractCrudController
         }
 
         return $responseParameters;
+    }
+
+    public function updateAllStock()
+    {
+        $items = $this->entityManager->getRepository(Item::class)->findAll();
+        
+        foreach ($items as $item) {
+            $item->setStock($item->getCount());
+        }
+        
+        $this->entityManager->flush();
+        
+        $this->addFlash('success', 'All items stock updated to match count.');
+        
+        return $this->redirect($this->generateUrl('admin', [
+            'crudAction' => 'index',
+            'crudControllerFqcn' => self::class,
+        ]));
     }
 }
