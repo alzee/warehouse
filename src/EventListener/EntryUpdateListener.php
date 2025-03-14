@@ -2,22 +2,19 @@
 namespace App\EventListener;
 
 use App\Entity\Entry;
-use Doctrine\ORM\Event\PostPersistEventArgs;
-use Doctrine\Bundle\DoctrineBundle\Attribute\AsEntityListener;
+use Doctrine\Persistence\Event\LifecycleEventArgs;
 use Doctrine\ORM\Events;
 
-#[AsEntityListener(event: Events::postPersist, entity: Entry::class)]
 class EntryUpdateListener
 {
-    public function postPersist(Entry $entry, PostPersistEventArgs $event): void
+    public function postPersist(Entry $entry, LifecycleEventArgs $event): void
     {
+        dd('fuck');
         $item = $entry->getItem();
-        $currentStock = $item->getCount();
-        $item->setCount($currentStock + $entry->getQuantity());
+        $currentStock = $item->getStock();
+        $item->setStock($currentStock + $entry->getQuantity());
         
-        $entityManager = $event->getObjectManager();
-        // $entityManager = $event->getEntityManager();
-        $entityManager->persist($item);
+        $entityManager = $event->getEntityManager();
         $entityManager->flush();
     }
 }
