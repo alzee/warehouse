@@ -100,7 +100,7 @@ class ApiController extends AbstractController
             'B1' => '名称',
             'C1' => '单位',
             'D1' => '当前库存',
-            'E1' => '总库存',
+            // 'E1' => '总库存',
         ];
         foreach($th as $k => $v){
             $sheet->setCellValue($k, $v);
@@ -110,7 +110,7 @@ class ApiController extends AbstractController
             $sheet->setCellValue('A' . ($k + 2), $v->getId());
             $sheet->setCellValue('B' . ($k + 2), $v->getName());
             $sheet->setCellValue('C' . ($k + 2), $v->getUnit());
-            $sheet->setCellValue('E' . ($k + 2), $v->getStock());
+            $sheet->setCellValue('D' . ($k + 2), $v->getStock());
         }
         date_default_timezone_set('Asia/Shanghai');
         $file = 'xlsx/器材列表' . date('YmdHis') . '.xlsx';
