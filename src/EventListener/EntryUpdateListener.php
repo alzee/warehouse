@@ -9,13 +9,11 @@ class EntryUpdateListener
 {
     public function postPersist(Entry $entry, LifecycleEventArgs $event): void
     {
-        dd('fuck');
         $item = $entry->getItem();
         $currentStock = $item->getStock();
         $item->setStock($currentStock + $entry->getQuantity());
         
         $em = $event->getEntityManager();
-        // $entityManager = $event->getObjectManager();
         $em->flush();
     }
 }
