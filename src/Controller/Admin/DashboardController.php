@@ -21,6 +21,8 @@ use App\Entity\Back;
 use App\Entity\Loss;
 use App\Entity\Neo;
 use App\Entity\Zone;
+use App\Entity\In;
+use App\Entity\Out;
 
 class DashboardController extends AbstractDashboardController
 {
@@ -106,6 +108,9 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('器材箱列表', 'fa fa-box', Box::class);
         yield MenuItem::linkToCrud('器材箱器材', 'fa fa-th', Entry::class);
         yield MenuItem::linkToCrud('进出记录', 'fa fa-people-carry', Log::class);
+        yield MenuItem::linkToCrud('入库管理', 'fa fa-cogs', In::class);
+        yield MenuItem::linkToCrud('出库管理', 'fa fa-cogs', Out::class);
+        yield MenuItem::linkToCrud('报损管理', 'fa fa-cogs', Loss::class);
         yield MenuItem::linkToCrud('盘点录入', 'fa fa-pen', Item::class)->setController(Item2CrudController::class);
         yield MenuItem::linkToCrud('盘点统计', 'fa fa-align-right', Item::class)->setController(Item3CrudController::class);
 
