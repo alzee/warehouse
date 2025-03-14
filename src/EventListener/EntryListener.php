@@ -3,7 +3,6 @@ namespace App\EventListener;
 
 use App\Entity\Entry;
 use Doctrine\Persistence\Event\LifecycleEventArgs;
-use Doctrine\ORM\Events;
 
 class EntryListener
 {
