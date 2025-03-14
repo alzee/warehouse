@@ -37,7 +37,7 @@ Item Management: 器材管理
 Item Stocking: 器材库存
 Counting Management: 盘点管理
 Created At: 时间
-Returner: 归还人
+Consignor: 交付人
 Taker: 领用人
 In: 入库
 Out: 出库

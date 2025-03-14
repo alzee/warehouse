@@ -28,7 +28,7 @@ class OutCrudController extends AbstractCrudController
             IdField::new('id')->onlyOnIndex(),
             AssociationField::new('item'),
             IntegerField::new('quantity'),
-            TextField::new('who', 'Returner'),
+            TextField::new('who', 'Taker'),
             TextareaField::new('note'),
             DateTimeField::new('createdAt')->onlyOnIndex(),
         ];
