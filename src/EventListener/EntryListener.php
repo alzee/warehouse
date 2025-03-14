@@ -5,7 +5,7 @@ use App\Entity\Entry;
 use Doctrine\Persistence\Event\LifecycleEventArgs;
 use Doctrine\ORM\Events;
 
-class EntryUpdateListener
+class EntryListener
 {
     public function postPersist(Entry $entry, LifecycleEventArgs $event): void
     {
