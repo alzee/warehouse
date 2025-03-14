@@ -37,7 +37,7 @@ class Box
     /**
      * @ORM\Column(type="boolean")
      */
-    private $status;
+    private $status = true;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
