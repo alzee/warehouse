@@ -85,6 +85,7 @@ class Item3CrudController extends AbstractCrudController
     {
         return $crud
             ->overrideTemplate('crud/index', 'count_stat.html.twig')
+            ->overrideTemplate('layout', 'admin/layout.html.twig')
             ->setPageTitle('index', '盘点统计');
     }
 
