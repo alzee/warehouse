@@ -30,14 +30,19 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
+use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 
 class Item3CrudController extends AbstractCrudController
 {
     private $entityManager;
+    private $adminUrlGenerator;
 
-    public function __construct(EntityManagerInterface $entityManager)
-    {
+    public function __construct(
+        EntityManagerInterface $entityManager,
+        AdminUrlGenerator $adminUrlGenerator
+    ) {
         $this->entityManager = $entityManager;
+        $this->adminUrlGenerator = $adminUrlGenerator;
     }
 
     public static function getEntityFqcn(): string
@@ -149,18 +154,16 @@ class Item3CrudController extends AbstractCrudController
     public function updateAllStock()
     {
         $items = $this->entityManager->getRepository(Item::class)->findAll();
-        
         foreach ($items as $item) {
             $item->setStock($item->getCount());
         }
         
         $this->entityManager->flush();
-        
         $this->addFlash('success', 'All items stock updated to match count.');
-        
-        return $this->redirect($this->generateUrl('admin', [
-            'crudAction' => 'index',
-            'crudControllerFqcn' => self::class,
-        ]));
+
+        return $this->redirect($this->adminUrlGenerator
+            ->setController(self::class)
+            ->setAction('index')
+            ->generateUrl());
     }
 }
