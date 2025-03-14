@@ -32,7 +32,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 
-class Item3CrudController extends AbstractCrudController
+class Item4CrudController extends AbstractCrudController
 {
     private $entityManager;
     private $adminUrlGenerator;
@@ -63,7 +63,7 @@ class Item3CrudController extends AbstractCrudController
             ]);
 
         return $actions
-            // ->add(Crud::PAGE_INDEX, $updateStock)
+            ->add(Crud::PAGE_INDEX, $updateStock)
             ->remove(Crud::PAGE_INDEX, 'new')
             ->remove(Crud::PAGE_INDEX, 'edit')
             ->remove(Crud::PAGE_INDEX, 'delete');
@@ -84,8 +84,7 @@ class Item3CrudController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
-            ->overrideTemplate('crud/index', 'count_stat.html.twig')
-            // ->overrideTemplate('layout', 'admin/layout.html.twig')
+            ->overrideTemplate('layout', 'admin/layout.html.twig')
             ->setPageTitle('index', '盘点统计');
     }
 
