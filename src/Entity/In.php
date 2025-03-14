@@ -39,6 +39,11 @@ class In
      */
     private $note;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $who;
+
     public function __construct()
     {
         $this->createdAt = new \DateTimeImmutable();
@@ -93,6 +98,18 @@ class In
     public function setNote(?string $note): self
     {
         $this->note = $note;
+
+        return $this;
+    }
+
+    public function getWho(): ?string
+    {
+        return $this->who;
+    }
+
+    public function setWho(?string $who): self
+    {
+        $this->who = $who;
 
         return $this;
     }
