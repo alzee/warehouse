@@ -28,7 +28,7 @@ class InCrudController extends AbstractCrudController
             IdField::new('id')->onlyOnIndex(),
             AssociationField::new('item'),
             IntegerField::new('quantity'),
-            TextField::new('who', 'consignor'),
+            TextField::new('who', 'Consignor'),
             TextareaField::new('note'),
             DateTimeField::new('createdAt')->onlyOnIndex(),
         ];
