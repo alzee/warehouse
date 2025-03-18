@@ -52,11 +52,9 @@ class Out2CrudController extends AbstractCrudController
 
     public function configureActions(Actions $actions): Actions
     {
-        $edit = Action::EDIT;
-        dump($edit);
-
         return $actions
-            ->disable(Action::DELETE);
+            ->disable(Action::DELETE)
+            ->update(Crud::PAGE_INDEX, Action::EDIT, fn (Action $action) => $action->displayIf(fn ($entity) => (null === $entity->getBackAt())))
         ;
     }
 
