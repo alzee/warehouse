@@ -44,6 +44,11 @@ class Out
      */
     private $who;
 
+    /**
+     * @ORM\Column(type="datetime_immutable", nullable=true)
+     */
+    private $backAt;
+
     public function __construct()
     {
         $this->createdAt = new \DateTimeImmutable();
@@ -110,6 +115,18 @@ class Out
     public function setWho(string $who): self
     {
         $this->who = $who;
+
+        return $this;
+    }
+
+    public function getBackAt(): ?\DateTimeImmutable
+    {
+        return $this->backAt;
+    }
+
+    public function setBackAt(?\DateTimeImmutable $backAt): self
+    {
+        $this->backAt = $backAt;
 
         return $this;
     }

@@ -31,6 +31,7 @@ class OutCrudController extends AbstractCrudController
             TextField::new('who', 'Taker'),
             TextareaField::new('note'),
             DateTimeField::new('createdAt')->onlyOnIndex(),
+            DateTimeField::new('backAt')->onlyOnIndex(),
         ];
     }
 
