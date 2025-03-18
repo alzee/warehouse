@@ -19,7 +19,7 @@ class Out
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Item::class)
+     * @ORM\ManyToOne(targetEntity=Item::class, inversedBy="o")
      * @ORM\JoinColumn(nullable=false)
      */
     private $item;
