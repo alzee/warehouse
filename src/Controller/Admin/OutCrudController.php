@@ -30,7 +30,7 @@ class OutCrudController extends AbstractCrudController
             IntegerField::new('quantity'),
             TextField::new('who', 'Taker'),
             TextareaField::new('note'),
-            DateTimeField::new('createdAt')->onlyOnIndex(),
+            DateTimeField::new('createdAt', 'Out At')->onlyOnIndex(),
             DateTimeField::new('backAt')->onlyOnIndex(),
         ];
     }
