@@ -30,6 +30,12 @@ class IOCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         if ($pageName === 'edit') {
+            $instance = $this->getContext()->getEntity()->getInstance();
+
+            $backAt = DateTimeField::new('backAt');
+            if ($instance->getBackAt() !== null) {
+                $backAt = DateTimeField::new('backAt')->setFormTypeOption('disabled', true);
+            }
             return [
                 IdField::new('id')->onlyOnIndex(),
                 AssociationField::new('item')->setFormTypeOption('disabled', true),
@@ -37,7 +43,7 @@ class IOCrudController extends AbstractCrudController
                 TextField::new('who', 'Taker')->setFormTypeOption('disabled', true),
                 TextareaField::new('note'),
                 DateTimeField::new('createdAt', 'Out At')->setFormTypeOption('disabled', true),
-                DateTimeField::new('backAt'),
+                $backAt,
             ];
         }
 
@@ -122,6 +128,14 @@ class IOCrudController extends AbstractCrudController
 
         // return $response;
     }
+
+    // public function createEntity(string $entityFqcn)
+    // {
+    //     $out = new Out();
+    //     $out->setCreatedAt(new \DateTimeImmutable());
+
+    //     return $out;
+    // }
 
     // public function updateEntity(EntityManagerInterface $entityManager, $entityInstance): void
     // {
