@@ -73,19 +73,30 @@ class Item2CrudController extends AbstractCrudController
 
         $writer = new Xlsx($spreadsheet);
 
-        $response = new StreamedResponse(
-            function () use ($writer) {
-                $writer->save('php://output');
-            }
-        );
+        $file = '/tmp/盘点单' . date('YmdHis') . '.xlsx';
+        $writer->save($file);
 
-        $response->headers->set('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-        $response->headers->set('Content-Disposition', $response->headers->makeDisposition(
-            ResponseHeaderBag::DISPOSITION_ATTACHMENT,
-            'pan_dian_dan.xlsx'
-        ));
+        return $this->file($file);
 
-        return $response;
+        // $response = new StreamedResponse(
+        //     function () use ($writer) {
+        //         $writer->save('php://output');
+        //     }
+        // );
+
+        // // Setting the filename with a UTF-8 encoded name and an ASCII fallback
+        // $utf8Filename = '盘点单.xlsx';
+        // $asciiFallbackFilename = 'pan_dian_dan.xlsx';
+        // $disposition = $response->headers->makeDisposition(
+        //     ResponseHeaderBag::DISPOSITION_ATTACHMENT,
+        //     $asciiFallbackFilename,
+        //     // $utf8Filename
+        // );
+
+        // $response->headers->set('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        // $response->headers->set('Content-Disposition', $disposition);
+
+        // return $response;
     }
 
     public function configureCrud(Crud $crud): Crud

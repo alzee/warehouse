@@ -103,19 +103,24 @@ class Out2CrudController extends AbstractCrudController
 
         $writer = new Xlsx($spreadsheet);
 
-        $response = new StreamedResponse(
-            function () use ($writer) {
-                $writer->save('php://output');
-            }
-        );
+        $file = '/tmp/出入库记录' . date('YmdHis') . '.xlsx';
+        $writer->save($file);
 
-        $response->headers->set('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-        $response->headers->set('Content-Disposition', $response->headers->makeDisposition(
-            ResponseHeaderBag::DISPOSITION_ATTACHMENT,
-            'chu_ru_ku.xlsx'
-        ));
+        return $this->file($file);
 
-        return $response;
+        // $response = new StreamedResponse(
+        //     function () use ($writer) {
+        //         $writer->save('php://output');
+        //     }
+        // );
+
+        // $response->headers->set('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        // $response->headers->set('Content-Disposition', $response->headers->makeDisposition(
+        //     ResponseHeaderBag::DISPOSITION_ATTACHMENT,
+        //     'chu_ru_ku.xlsx'
+        // ));
+
+        // return $response;
     }
 
     // public function updateEntity(EntityManagerInterface $entityManager, $entityInstance): void
