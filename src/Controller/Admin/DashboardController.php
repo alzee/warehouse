@@ -108,11 +108,6 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('新增器材', 'fa fa-puzzle-piece', Item::class)->setAction('new');
         yield MenuItem::linkToCrud('器材列表', 'fa fa-cogs', Item::class);
 
-        yield MenuItem::section('Box Management');
-
-        yield MenuItem::linkToCrud('器材箱列表', 'fa fa-box', Box::class);
-        yield MenuItem::linkToCrud('器材箱器材', 'fa fa-th', Entry::class);
-        yield MenuItem::linkToCrud('进出记录', 'fa fa-people-carry', Log::class);
 
         yield MenuItem::section('Item Stocking');
 
@@ -126,6 +121,19 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('盘点录入', 'fa fa-pen', Item::class)->setController(Item2CrudController::class);
         yield MenuItem::linkToCrud('盘点统计', 'fa fa-align-right', Item::class)->setController(Item3CrudController::class);
         yield MenuItem::linkToCrud('盘点审核', 'fa fa-stamp', Item::class)->setController(Item4CrudController::class);
+
+        yield MenuItem::section('');
+
+        yield MenuItem::subMenu('器材箱', 'fa fa-tags')->setSubItems([
+            MenuItem::section('Box Management'),
+
+            MenuItem::linkToCrud('器材箱列表', 'fa fa-box', Box::class),
+            MenuItem::linkToCrud('器材箱器材', 'fa fa-th', Entry::class),
+            MenuItem::linkToCrud('进出记录', 'fa fa-people-carry', Log::class),
+
+            MenuItem::section('Item Management'),
+            MenuItem::linkToCrud('出库管理', 'fa fa-arrow-alt-circle-left', Out::class),
+        ]);
 
         /*
         yield MenuItem::subMenu('仓库管理 ', 'fa fa-tags')->setSubItems([

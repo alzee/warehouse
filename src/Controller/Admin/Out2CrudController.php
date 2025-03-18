@@ -15,7 +15,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 
-class OutCrudController extends AbstractCrudController
+class Out2CrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
@@ -30,14 +30,15 @@ class OutCrudController extends AbstractCrudController
             IntegerField::new('quantity'),
             TextField::new('who', 'Taker'),
             TextareaField::new('note'),
-            DateTimeField::new('createdAt')->onlyOnIndex(),
+            DateTimeField::new('createdAt', 'Out At')->onlyOnIndex(),
+            DateTimeField::new('backAt')->onlyOnIndex(),
         ];
     }
 
     public function configureActions(Actions $actions): Actions
     {
         return $actions
-            ->disable(Action::DELETE, Action::EDIT);
+            ->disable(Action::EDIT);
         ;
     }
 }
