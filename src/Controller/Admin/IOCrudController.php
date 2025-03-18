@@ -20,7 +20,7 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
-class Out2CrudController extends AbstractCrudController
+class IOCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
