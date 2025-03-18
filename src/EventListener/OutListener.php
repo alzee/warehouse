@@ -16,4 +16,10 @@ class OutListener
         $em = $event->getEntityManager();
         $em->flush();
     }
+
+    public function postUpdate(Out $out, LifecycleEventArgs $event): void
+    {
+        $em = $event->getEntityManager();
+        $em->flush();
+    }
 }
