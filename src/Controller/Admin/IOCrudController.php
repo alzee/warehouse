@@ -91,7 +91,7 @@ class IOCrudController extends AbstractCrudController
         $sheet->setCellValue('E1', '领用人');
         $sheet->setCellValue('F1', '备注');
         $sheet->setCellValue('G1', '出库时间');
-        $sheet->setCellValue('H1', '入库时间');
+        $sheet->setCellValue('H1', '归还时间');
 
         // Data
         $row = 2;
@@ -127,6 +127,13 @@ class IOCrudController extends AbstractCrudController
         // ));
 
         // return $response;
+    }
+
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            ->setSearchFields('item.name')
+            ;
     }
 
     // public function createEntity(string $entityFqcn)
