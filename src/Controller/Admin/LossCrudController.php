@@ -43,7 +43,7 @@ class LossCrudController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
-            ->setSearchFields('item.name')
+            ->setSearchFields(['item.name'])
             ;
     }
 }
