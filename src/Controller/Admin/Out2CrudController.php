@@ -38,7 +38,7 @@ class Out2CrudController extends AbstractCrudController
     public function configureActions(Actions $actions): Actions
     {
         return $actions
-            ->disable(Action::EDIT);
+            ->disable(Action::DELETE);
         ;
     }
 }

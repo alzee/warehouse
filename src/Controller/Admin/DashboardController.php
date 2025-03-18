@@ -113,7 +113,7 @@ class DashboardController extends AbstractDashboardController
 
         yield MenuItem::linkToCrud('器材库存', 'fa fa-warehouse', Item::class)->setController(Item1CrudController::class);
         yield MenuItem::linkToCrud('入库管理', 'fa fa-arrow-alt-circle-right', In::class);
-        yield MenuItem::linkToCrud('出库管理', 'fa fa-arrow-alt-circle-left', Out::class);
+        yield MenuItem::linkToCrud('出入动态管理', 'fa fa-arrows-h', Out::class)->setController(Out2CrudController::class);
         yield MenuItem::linkToCrud('报损管理', 'fa fa-trash', Loss::class);
 
         yield MenuItem::section('Counting Management');
