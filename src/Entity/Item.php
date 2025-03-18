@@ -234,7 +234,7 @@ class Item
 
     public function getDiff(): ?int
     {
-        return $this->diff;
+        return $this->count - $this->stock;
     }
 
     public function setDiff(?int $diff): self
