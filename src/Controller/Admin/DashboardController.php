@@ -178,6 +178,9 @@ class DashboardController extends AbstractDashboardController
             // this defines the pagination size for all CRUD controllers
             // (each CRUD controller can override this value if needed)
             ->setPaginatorPageSize(30)
+            ->setTimezone('Asia/Shanghai')
+            ->setDateTimeFormat('yyyy.MM.dd HH:mm')
+            ->setDefaultSort(['id' => 'DESC'])
         ;
     }
 

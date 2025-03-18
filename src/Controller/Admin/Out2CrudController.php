@@ -14,6 +14,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+use Doctrine\ORM\EntityManagerInterface;
 
 class Out2CrudController extends AbstractCrudController
 {
@@ -24,6 +25,18 @@ class Out2CrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
+        if ($pageName === 'edit') {
+            return [
+                IdField::new('id')->onlyOnIndex(),
+                AssociationField::new('item')->setFormTypeOption('disabled', true),
+                IntegerField::new('quantity')->setFormTypeOption('disabled', true),
+                TextField::new('who', 'Taker')->setFormTypeOption('disabled', true),
+                TextareaField::new('note'),
+                DateTimeField::new('createdAt', 'Out At')->setFormTypeOption('disabled', true),
+                DateTimeField::new('backAt'),
+            ];
+        }
+
         return [
             IdField::new('id')->onlyOnIndex(),
             AssociationField::new('item'),
@@ -31,14 +44,27 @@ class Out2CrudController extends AbstractCrudController
             TextField::new('who', 'Taker'),
             TextareaField::new('note'),
             DateTimeField::new('createdAt', 'Out At')->onlyOnIndex(),
+            DateTimeField::new('createdAt', 'Out At')->onlyWhenCreating(),
             DateTimeField::new('backAt')->onlyOnIndex(),
+            DateTimeField::new('backAt')->onlyWhenUpdating(),
         ];
     }
 
     public function configureActions(Actions $actions): Actions
     {
+        $edit = Action::EDIT;
+        dump($edit);
+
         return $actions
             ->disable(Action::DELETE);
         ;
     }
+
+    // public function updateEntity(EntityManagerInterface $entityManager, $entityInstance): void
+    // {
+
+    //     // $entityInstance->setBackAt(new \DateTimeImmutable());
+
+    //     parent::updateEntity($entityManager, $entityInstance);
+    // }
 }
