@@ -147,26 +147,50 @@ class ApiController extends AbstractController
         $spreadsheet = new Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();
 
+        // Title
+        $sheet->setCellValue('A1', '盘点统计');
+        $sheet->mergeCells('A1:F1');
+        $sheet->getStyle('A1:F1')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+        $sheet->getStyle('A1:F1')->getFont()->setBold(true);
+
+        // Headers
         $th = [
-            'A1' => '编号',
-            'B1' => '名称',
-            'C1' => '单位',
-            'D1' => '盘点数量',
-            'E1' => '系统数量',
-            'F1' => '盈亏',
+            'A2' => '编号',
+            'B2' => '名称',
+            'C2' => '单位',
+            'D2' => '盘点数量',
+            'E2' => '系统数量',
+            'F2' => '盈亏',
         ];
         foreach($th as $k => $v){
             $sheet->setCellValue($k, $v);
         }
         $items = $this->getDoctrine()->getRepository(Item::class)->findAll();
         foreach($items as $k => $v){
-            $sheet->setCellValue('A' . ($k + 2), $v->getId());
-            $sheet->setCellValue('B' . ($k + 2), $v->getName());
-            $sheet->setCellValue('C' . ($k + 2), $v->getUnit());
-            $sheet->setCellValue('D' . ($k + 2), $v->getCount());
-            $sheet->setCellValue('E' . ($k + 2), $v->getStock());
-            $sheet->setCellValue('F' . ($k + 2), $v->getCount() - $v->getStock());
+            $sheet->setCellValue('A' . ($k + 3), $v->getId());
+            $sheet->setCellValue('B' . ($k + 3), $v->getName());
+            $sheet->setCellValue('C' . ($k + 3), $v->getUnit());
+            $sheet->setCellValue('D' . ($k + 3), $v->getCount());
+            $sheet->setCellValue('E' . ($k + 3), $v->getStock());
+            $sheet->setCellValue('F' . ($k + 3), $v->getCount() - $v->getStock());
         }
+
+        // Auto size columns
+        foreach (range('A', 'F') as $columnID) {
+            $sheet->getColumnDimension($columnID)->setAutoSize(true);
+        }
+
+        // Add borders to cells
+        $styleArray =[
+            'borders' => [
+                'allBorders' => [
+                    'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                    'color' => ['argb' => '00000000'],
+                ]
+            ]
+        ];
+        $sheet->getStyle('A2:F' . ($k + 3))->applyFromArray($styleArray);
+
         date_default_timezone_set('Asia/Shanghai');
         $file = 'xlsx/盘点明细' . date('YmdHis') . '.xlsx';
         $writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($spreadsheet, "Xlsx");
