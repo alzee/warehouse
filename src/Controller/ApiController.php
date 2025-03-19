@@ -95,11 +95,18 @@ class ApiController extends AbstractController
     {
         $spreadsheet = new Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();
+        // Title
+        $sheet->setCellValue('A1', '器材库存');
+        $sheet->mergeCells('A1:D1');
+        $sheet->getStyle('A1:D1')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+        $sheet->getStyle('A1:D1')->getFont()->setBold(true);
+
+        // Headers
         $th = [
-            'A1' => '编号',
-            'B1' => '名称',
-            'C1' => '单位',
-            'D1' => '当前库存',
+            'A2' => '编号',
+            'B2' => '名称',
+            'C2' => '单位',
+            'D2' => '当前库存',
             // 'E1' => '总库存',
         ];
         foreach($th as $k => $v){
@@ -107,11 +114,23 @@ class ApiController extends AbstractController
         }
         $items = $this->getDoctrine()->getRepository(Item::class)->findAll();
         foreach($items as $k => $v){
-            $sheet->setCellValue('A' . ($k + 2), $v->getId());
-            $sheet->setCellValue('B' . ($k + 2), $v->getName());
-            $sheet->setCellValue('C' . ($k + 2), $v->getUnit());
-            $sheet->setCellValue('D' . ($k + 2), $v->getStock());
+            $sheet->setCellValue('A' . ($k + 3), $v->getId());
+            $sheet->setCellValue('B' . ($k + 3), $v->getName());
+            $sheet->setCellValue('C' . ($k + 3), $v->getUnit());
+            $sheet->setCellValue('D' . ($k + 3), $v->getStock());
         }
+
+        // Add borders to cells
+        $styleArray =[
+            'borders' => [
+                'allBorders' => [
+                    'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                    'color' => ['argb' => '00000000'],
+                ]
+            ]
+        ];
+
+        $sheet->getStyle('A2:D' . ($k + 3))->applyFromArray($styleArray);
         date_default_timezone_set('Asia/Shanghai');
         $file = 'xlsx/器材列表' . date('YmdHis') . '.xlsx';
         $writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($spreadsheet, "Xlsx");
@@ -127,6 +146,7 @@ class ApiController extends AbstractController
     {
         $spreadsheet = new Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();
+
         $th = [
             'A1' => '编号',
             'B1' => '名称',
