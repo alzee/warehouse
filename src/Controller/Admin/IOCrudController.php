@@ -82,19 +82,25 @@ class IOCrudController extends AbstractCrudController
 
         $spreadsheet = new Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();
+
+        // Title
+        $sheet->setCellValue('A1', '出入库记录');
+        $sheet->mergeCells('A1:H1');
+        $sheet->getStyle('A1:H1')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+        $sheet->getStyle('A1:H1')->getFont()->setBold(true);
         
         // Headers
-        $sheet->setCellValue('A1', '编号');
-        $sheet->setCellValue('B1', '名称');
-        $sheet->setCellValue('C1', '数量');
-        $sheet->setCellValue('D1', '单位');
-        $sheet->setCellValue('E1', '领用人');
-        $sheet->setCellValue('F1', '备注');
-        $sheet->setCellValue('G1', '出库时间');
-        $sheet->setCellValue('H1', '归还时间');
+        $sheet->setCellValue('A2', '编号');
+        $sheet->setCellValue('B2', '名称');
+        $sheet->setCellValue('C2', '数量');
+        $sheet->setCellValue('D2', '单位');
+        $sheet->setCellValue('E2', '领用人');
+        $sheet->setCellValue('F2', '备注');
+        $sheet->setCellValue('G2', '出库时间');
+        $sheet->setCellValue('H2', '归还时间');
 
         // Data
-        $row = 2;
+        $row = 3;
         foreach ($outs as $o) {
             $sheet->setCellValue('A' . $row, $o->getId());
             $sheet->setCellValue('B' . $row, $o->getItem()->getName());
@@ -106,6 +112,23 @@ class IOCrudController extends AbstractCrudController
             $sheet->setCellValue('H' . $row, $o->getBackAt());
             $row++;
         }
+
+        // Auto size columns
+        foreach (range('A', 'H') as $columnID) {
+            $sheet->getColumnDimension($columnID)->setAutoSize(true);
+        }
+
+        // Add borders to cells
+        $styleArray =[
+            'borders' => [
+                'allBorders' => [
+                    'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                    'color' => ['argb' => '00000000'],
+                ]
+            ]
+        ];
+
+        $sheet->getStyle('A2:H' . ($row - 1))->applyFromArray($styleArray);
 
         $writer = new Xlsx($spreadsheet);
 
