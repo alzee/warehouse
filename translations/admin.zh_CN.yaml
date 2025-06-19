@@ -41,3 +41,5 @@ Consignor: 交付人
 Taker: 领用人
 In: 入库
 Out: 出库
+Back At: 归还时间
+Out At: 出库时间

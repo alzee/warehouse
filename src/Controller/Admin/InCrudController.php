@@ -40,4 +40,11 @@ class InCrudController extends AbstractCrudController
             ->disable(Action::DELETE, Action::EDIT);
         ;
     }
+
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            ->setSearchFields(['item.name'])
+            ;
+    }
 }

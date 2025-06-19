@@ -54,15 +54,21 @@ class Item2CrudController extends AbstractCrudController
 
         $spreadsheet = new Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();
+
+        // Title
+        $sheet->setCellValue('A1', '盘点单');
+        $sheet->mergeCells('A1:D1');
+        $sheet->getStyle('A1:D1')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+        $sheet->getStyle('A1:D1')->getFont()->setBold(true);
         
         // Headers
-        $sheet->setCellValue('A1', '编号');
-        $sheet->setCellValue('B1', '名称');
-        $sheet->setCellValue('C1', '单位');
-        $sheet->setCellValue('D1', '盘点数量');
+        $sheet->setCellValue('A2', '编号');
+        $sheet->setCellValue('B2', '名称');
+        $sheet->setCellValue('C2', '单位');
+        $sheet->setCellValue('D2', '盘点数量');
 
         // Data
-        $row = 2;
+        $row = 3;
         foreach ($items as $item) {
             $sheet->setCellValue('A' . $row, $item->getId());
             $sheet->setCellValue('B' . $row, $item->getName());
@@ -71,21 +77,49 @@ class Item2CrudController extends AbstractCrudController
             $row++;
         }
 
+        // Auto size columns
+        foreach (range('A', 'D') as $columnID) {
+            $sheet->getColumnDimension($columnID)->setAutoSize(true);
+        }
+
+        // Add borders to cells
+        $styleArray =[
+            'borders' => [
+                'allBorders' => [
+                    'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                    'color' => ['argb' => '00000000'],
+                ]
+            ]
+        ];
+
+        $sheet->getStyle('A2:D' . ($row - 1))->applyFromArray($styleArray);
+
         $writer = new Xlsx($spreadsheet);
 
-        $response = new StreamedResponse(
-            function () use ($writer) {
-                $writer->save('php://output');
-            }
-        );
+        $file = '/tmp/盘点单' . date('YmdHis') . '.xlsx';
+        $writer->save($file);
 
-        $response->headers->set('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-        $response->headers->set('Content-Disposition', $response->headers->makeDisposition(
-            ResponseHeaderBag::DISPOSITION_ATTACHMENT,
-            'pan_dian_dan.xlsx'
-        ));
+        return $this->file($file);
 
-        return $response;
+        // $response = new StreamedResponse(
+        //     function () use ($writer) {
+        //         $writer->save('php://output');
+        //     }
+        // );
+
+        // // Setting the filename with a UTF-8 encoded name and an ASCII fallback
+        // $utf8Filename = '盘点单.xlsx';
+        // $asciiFallbackFilename = 'pan_dian_dan.xlsx';
+        // $disposition = $response->headers->makeDisposition(
+        //     ResponseHeaderBag::DISPOSITION_ATTACHMENT,
+        //     $asciiFallbackFilename,
+        //     // $utf8Filename
+        // );
+
+        // $response->headers->set('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        // $response->headers->set('Content-Disposition', $disposition);
+
+        // return $response;
     }
 
     public function configureCrud(Crud $crud): Crud

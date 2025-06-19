@@ -75,10 +75,22 @@ class Item
      */
     private $vendor;
 
+    /**
+     * @ORM\OneToMany(targetEntity=In::class, mappedBy="item", orphanRemoval=true)
+     */
+    private $i;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Out::class, mappedBy="item", orphanRemoval=true)
+     */
+    private $o;
+
     public function __construct()
     {
         $this->boxes = new ArrayCollection();
         $this->entries = new ArrayCollection();
+        $this->i = new ArrayCollection();
+        $this->o = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -234,7 +246,7 @@ class Item
 
     public function getDiff(): ?int
     {
-        return $this->diff;
+        return $this->count - $this->stock;
     }
 
     public function setDiff(?int $diff): self
@@ -264,6 +276,36 @@ class Item
     public function setVendor(?string $vendor): self
     {
         $this->vendor = $vendor;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, In>
+     */
+    public function getI(): Collection
+    {
+        return $this->i;
+    }
+
+    public function addI(In $i): self
+    {
+        if (!$this->i->contains($i)) {
+            $this->i[] = $i;
+            $i->setItem1($this);
+        }
+
+        return $this;
+    }
+
+    public function removeI(In $i): self
+    {
+        if ($this->i->removeElement($i)) {
+            // set the owning side to null (unless already changed)
+            if ($i->getItem1() === $this) {
+                $i->setItem1(null);
+            }
+        }
 
         return $this;
     }

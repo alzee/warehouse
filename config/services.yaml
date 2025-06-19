@@ -50,6 +50,10 @@ services:
             name: 'doctrine.orm.entity_listener'
             event: 'postPersist'
             entity: 'App\Entity\Out'
+          - 
+            name: 'doctrine.orm.entity_listener'
+            event: 'postUpdate'
+            entity: 'App\Entity\Out'
 
     App\EventListener\LossListener:
         tags:

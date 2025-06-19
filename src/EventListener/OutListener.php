@@ -16,4 +16,21 @@ class OutListener
         $em = $event->getEntityManager();
         $em->flush();
     }
+
+    public function postUpdate(Out $out, LifecycleEventArgs $event): void
+    {
+        $em = $event->getEntityManager();
+        $uow = $em->getUnitOfWork();
+        $changeSet = $uow->getEntityChangeSet($out);
+        // dump($changeSet);
+
+        if (isset($changeSet['backAt'])) {
+            if ($changeSet['backAt'][0] === null) {
+                // dump('item back!');
+                $item = $out->getItem();
+                $item->setStock($item->getStock() + $out->getQuantity());
+                $em->flush();
+            }
+        }
+    }
 }
